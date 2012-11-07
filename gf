@@ -2,10 +2,18 @@
 # "gaia flash"
 # easily flash your gaia applications
 
+echo "Finding gaia base directory..."
+while test ! -r Makefile -a ! $(pwd) = "/" ; do
+    cd ..
+done
+
+
 if test $(basename $(pwd)) != "gaia" ; then
-    echo "ERROR : please go to your gaia directory"
+    echo "ERROR : please be inside your gaia directory"
     exit 1
 fi
+
+echo Found $(pwd)
 
 while getopts p opt ; do
     case $opt in
