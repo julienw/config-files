@@ -31,4 +31,5 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-
+alias launch_tests='~/firefox-nightly/firefox --no-remote -profile /home/julien/travail/git/gaia/profile/ http://test-agent.gaiamobile.org:8080/ &'
+alias kill_b2g="adb shell kill `adb shell ps | grep 'b2g/b2g' | awk '{ print $2 }'`"
