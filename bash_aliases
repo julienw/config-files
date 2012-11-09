@@ -49,3 +49,7 @@ alias launch_tests='~/firefox-nightly/firefox --no-remote -profile $GAIADIR/prof
 go() {
     eval go_$1
 }
+
+find_git_commit() {
+    git cherry $1 | awk '{ print $2 }' | xargs -n 1 git branch --contains | sort | uniq
+}
