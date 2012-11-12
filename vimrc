@@ -6,6 +6,8 @@ syntax on
 
 set hidden
 
+" set xterm title
+set title
 
 " text formatting
 set completeopt=
