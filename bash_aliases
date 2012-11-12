@@ -44,7 +44,6 @@ alias go_gaia="cd $GAIADIR"
 alias go_mozcentral="cd $MOZCENTRAL"
 alias go_b2g="cd $B2G"
 alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
-alias launch_tests='~/firefox-nightly/firefox --no-remote -profile $GAIADIR/profile/ http://test-agent.gaiamobile.org:8080/ &'
 
 go() {
     eval go_$1
@@ -53,3 +52,14 @@ go() {
 find_git_commit() {
     git cherry $1 | awk '{ print $2 }' | xargs -n 1 git branch --contains | sort | uniq
 }
+
+launch_tests() {
+    cd $GAIADIR
+    if [ ! -d profile/extensions/httpd ] ; then
+        DEBUG=1 make
+    fi
+
+    ~/firefox-nightly/firefox --no-remote -profile profile/ http://test-agent.gaiamobile.org:8080/ &
+    make test-agent-server
+}
+
