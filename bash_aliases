@@ -38,7 +38,7 @@ kill_b2g() {
 }
 
 GAIADIR="/home/julien/travail/git/gaia"
-MOZCENTRAl="/home/julien/travail/hg/mozilla-central"
+MOZCENTRAL="/home/julien/travail/hg/mozilla-central"
 B2G="/home/julien/travail/git/B2G"
 alias go_gaia="cd $GAIADIR"
 alias go_mozcentral="cd $MOZCENTRAL"
