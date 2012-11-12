@@ -50,3 +50,5 @@ noremap  <expr> <Home> (col('.') == matchend(getline('.'), '^\s*')+1 ? '0'  : '^
 imap <Home> <C-o><Home>
 "imap <End>  <C-o><End>
 
+" write with sudo
+command W w !sudo tee % > /dev/null
