@@ -47,6 +47,9 @@ alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 
 go() {
     eval go_$1
+    if [ -n "$2" -a -d "apps/$2" ] ; then
+      cd apps/$2
+    fi
 }
 
 find_git_commit() {
