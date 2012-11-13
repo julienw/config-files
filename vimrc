@@ -68,3 +68,7 @@ autocmd BufWinLeave * call clearmatches()
 " see http://vim.wikia.com/wiki/Remove_unwanted_spaces
 autocmd BufWritePre *.pl,*.js,*.jsm :%s/\s\+$//e
 
+" show long lines
+set textwidth=76
+set colorcolumn=+1
+
