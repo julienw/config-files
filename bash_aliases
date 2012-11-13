@@ -66,3 +66,6 @@ launch_tests() {
     make test-agent-server
 }
 
+GJSLINTDIR="~/travail/svn/closure-linter/"
+alias gjslint="PYTHONPATH=$GJSLINTDIR $GJSLINTDIR/closure_linter/gjslint.py"
+
