@@ -53,3 +53,18 @@ imap <Home> <C-o><Home>
 
 " write with sudo
 command W w !sudo tee % > /dev/null
+
+" highlight bad whitespaces
+" see http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
+match ExtraWhitespace /^\s*\t/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" auto clear trailing space
+" see http://vim.wikia.com/wiki/Remove_unwanted_spaces
+autocmd BufWritePre *.pl,*.js,*.jsm :%s/\s\+$//e
+
