@@ -1,7 +1,7 @@
 alias j='jobs -l'
 alias po=popd
 alias pu=pushd
-alias ls='ls -F'
+alias ls='ls -F --color=auto'
 
 function _git_prompt() {
     local git_status="`git status -unormal 2>&1`"
