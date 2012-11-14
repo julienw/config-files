@@ -33,12 +33,18 @@ set lazyredraw
 set ruler
 set scrolloff=5
 set showcmd
+
+" show the matching bracket/parenthesis/etc
 set showmatch
 set sidescrolloff=10
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 set number
 set numberwidth=5
+
+" use the mouse in all mode
 set mouse=a
+
+" toggle between paste mode and nopaste mode
 set pastetoggle=<F12>
 
 " general
@@ -71,4 +77,10 @@ autocmd BufWritePre *.pl,*.js,*.jsm :%s/\s\+$//e
 " show long lines
 set textwidth=76
 set colorcolumn=+1
+
+" remember where we were last time (note: viminfo is good by default)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" for gaia
+map <F8> :!gf<CR>
 
