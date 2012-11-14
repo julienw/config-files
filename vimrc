@@ -18,15 +18,17 @@ set infercase
 set nowrap
 set smartcase
 set shiftround
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set smarttab
 
 " UI
 set cursorcolumn
 set cursorline
 set laststatus=2
 set incsearch
+set hlsearch
 set lazyredraw
 "set list
 "set listchars=tab:>-,trail:-
@@ -50,6 +52,7 @@ set pastetoggle=<F12>
 " general
 set backspace=indent,eol,start
 set autoindent
+set smartindent
 
 noremap  <expr> <Home> (col('.') == matchend(getline('.'), '^\s*')+1 ? '0'  : '^')
 "noremap  <expr> <End>  (col('.') == match(getline('.'),    '\s*$')   ? '$'  : 'g_')
