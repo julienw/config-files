@@ -75,7 +75,7 @@ autocmd BufWinLeave * call clearmatches()
 
 " auto clear trailing space
 " see http://vim.wikia.com/wiki/Remove_unwanted_spaces
-autocmd BufWritePre *.pl,*.js,*.jsm :%s/\s\+$//e
+autocmd BufWritePre *.pl,*.js,*.jsm,*.css :%s/\s\+$//e
 
 " show long lines
 set textwidth=76
