@@ -84,6 +84,10 @@ set colorcolumn=+1
 " remember where we were last time (note: viminfo is good by default)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" keep the selection
+vmap > >gv
+vmap < <gv
+
 " for gaia
 map <F8> :!gf<CR>
 
