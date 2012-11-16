@@ -70,3 +70,5 @@ launch_tests() {
 GJSLINTDIR="~/travail/svn/closure-linter/"
 alias gjslint="PYTHONPATH=$GJSLINTDIR $GJSLINTDIR/closure_linter/gjslint.py"
 
+alias resetapps="adb push ~/travail/webapps.json /data/local/webapps/"
+
