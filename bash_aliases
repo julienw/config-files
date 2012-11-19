@@ -1,3 +1,4 @@
+
 alias j='jobs -l'
 alias po=popd
 alias pu=pushd
@@ -47,6 +48,11 @@ alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 alias adbforward="adb forward tcp:6000 tcp:60000"
 
 go() {
+    if [ -z "$1" ] ; then
+      go_gaia
+      return
+    fi
+
     eval go_$1
     if [ -n "$2" -a -d "apps/$2" ] ; then
       cd apps/$2
@@ -66,6 +72,7 @@ launch_tests() {
     ~/firefox-nightly/firefox --no-remote -profile profile/ http://test-agent.gaiamobile.org:8080/ &
     make test-agent-server
 }
+
 
 GJSLINTDIR="~/travail/svn/closure-linter/"
 alias gjslint="PYTHONPATH=$GJSLINTDIR $GJSLINTDIR/closure_linter/gjslint.py"
