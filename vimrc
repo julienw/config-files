@@ -3,6 +3,8 @@ set nocompatible
 filetype indent plugin on
 
 syntax on
+autocmd BufNewFile,BufRead *.jsm set filetype=javascript
+
 set bg=dark
 
 set hidden
