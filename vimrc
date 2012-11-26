@@ -51,6 +51,9 @@ set mouse=a
 " toggle between paste mode and nopaste mode
 set pastetoggle=<F12>
 
+" the normal vim copy/paste operations use the system clipboard
+set clipboard=unnamedplus
+
 " general
 set backspace=indent,eol,start
 set autoindent
