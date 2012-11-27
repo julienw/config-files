@@ -1,5 +1,8 @@
 set nocompatible
 
+" this need the pathogen vim plugin
+call pathogen#infect()
+
 filetype indent plugin on
 
 syntax on
