@@ -69,7 +69,7 @@ imap <Home> <C-o><Home>
 "imap <End>  <C-o><End>
 
 " write with sudo
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 " highlight bad whitespaces
 " see http://vim.wikia.com/wiki/Highlight_unwanted_spaces
@@ -96,6 +96,18 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 vmap > >gv
 vmap < <gv
 
+" define Y like D
+nmap Y y$
+
+" display a warning when the file exernally changed
+au FileChangedShell * echo "Warning: File changed on disk"
+
 " for gaia
 map <F8> :!gf<CR>
+map <F9> :!gf -p<CR>
+
+" use ctrl + space in supertab
+" in terminal windows, ctrl + space inserts null characters
+let g:SuperTabMappingForward = '<nul>'
+let g:SuperTabMappingBackward = '<s-nul>'
 

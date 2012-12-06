@@ -32,7 +32,7 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-alias logcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>)'"
+alias logcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-\*)'"
 
 kill_b2g() {
     adb shell kill `adb shell ps | grep 'b2g/b2g' | awk '{ print $2 }'`
