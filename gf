@@ -14,12 +14,13 @@ offbold=`tput rmso`
 
 # saving where we are
 initialpwd=$(pwd)
+make_command="install-gaia"
 
 # parsing options
 while getopts pah opt ; do
     case $opt in
         p)
-            export PRODUCTION=1
+            make_command="production"
             ;;
         a)
             flash_all=1
@@ -70,7 +71,7 @@ else
     echo -n "Flashing ${bold}all${offbold} gaia, "
 fi
 
-if [ "$PRODUCTION" == 1 ] ; then
+if [ "$make_command" = "production" ] ; then
     echo "in ${bold}production${offbold} mode"
 else
     echo "in ${bold}dev${offbold} mode"
@@ -78,9 +79,5 @@ fi
 
 read -p "Is this correct ? Press Ctrl-C to abord"
 
-if [ "$PRODUCTION" == 1 ] ; then
-    adb remount
-fi
-
-make install-gaia
+make ${make_command}
 

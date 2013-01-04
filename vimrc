@@ -86,7 +86,7 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufWritePre *.pl,*.js,*.jsm,*.css :%s/\s\+$//e
 
 " show long lines
-set textwidth=76
+set textwidth=80
 set colorcolumn=+1
 
 " remember where we were last time (note: viminfo is good by default)
@@ -111,3 +111,5 @@ map <F9> :!gf -p<CR>
 let g:SuperTabMappingForward = '<nul>'
 let g:SuperTabMappingBackward = '<s-nul>'
 
+" use jshint for syntastic
+let g:syntastic_javascript_checker = 'jshint'

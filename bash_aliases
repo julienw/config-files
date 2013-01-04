@@ -32,20 +32,26 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-alias logcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-\*)'"
+alias logcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-\*|Content JS)'"
 
 kill_b2g() {
-    adb shell kill `adb shell ps | grep 'b2g/b2g' | awk '{ print $2 }'`
+  adb shell stop b2g && adb shell start b2g
+#    adb shell kill `adb shell ps | grep 'b2g/b2g' | awk '{ print $2 }'`
 }
 
 GAIADIR="/home/julien/travail/git/gaia"
 MOZCENTRAL="/home/julien/travail/hg/mozilla-central"
+MOZBETA="/home/julien/travail/hg/mozilla-beta"
+MOZB2G="/home/julien/travail/hg/mozilla-b2g18"
 B2G="/home/julien/travail/git/B2G"
 alias go_gaia="cd $GAIADIR"
-alias go_mozcentral="cd $MOZCENTRAL"
+alias go_central="cd $MOZCENTRAL"
 alias go_b2g="cd $B2G"
+alias go_beta="cd $MOZBETA"
+alias go_18="cd $MOZB2G"
 alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 alias adbforward="adb forward tcp:6000 tcp:60000"
+alias b2gps="adb shell b2g-ps"
 
 go() {
     if [ -z "$1" ] ; then
@@ -79,3 +85,7 @@ alias gjslint="PYTHONPATH=$GJSLINTDIR $GJSLINTDIR/closure_linter/gjslint.py"
 
 alias resetapps="adb push ~/travail/webapps.json /data/local/webapps/"
 
+loc() {
+  repwd="`pwd | sed 's/[]\\{}[\.$*+?^|()]/\\&/g'`"
+  locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
+}
