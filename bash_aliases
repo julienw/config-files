@@ -87,5 +87,6 @@ alias resetapps="adb push ~/travail/webapps.json /data/local/webapps/"
 
 loc() {
   repwd="`pwd | sed 's/[]\\{}[\.$*+?^|()]/\\&/g'`"
-  locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
+  locate --regex "^${repwd}.*$@" -i | grep -F -i "$@"
+  #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
