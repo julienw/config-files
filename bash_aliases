@@ -1,3 +1,23 @@
+# don't ignore line starting with a space
+HISTCONTROL=ignoredups
+# Option 'histreedit' allows users to re-edit a failed history substitution. 
+shopt -s histreedit
+# If set, minor errors in the spelling of a directory component in a cd command
+# will be corrected.
+shopt -s cdspell
+# If set, Bash attempts spelling correction on directory names during word
+# completion if the directory name initially supplied does not exist.
+shopt -s dirspell
+# If set, Bash lists the status of any stopped and running jobs before exiting
+# an interactive shell.
+shopt -s checkjobs
+# If set, Bash attempts to save all lines of a multiple-line command in the
+# same history entry. This allows easy re-editing of multi-line commands.
+shopt -s cmdhist
+# If set, and Readline is being used, the results of history substitution are
+# not immediately passed to the shell parser. Instead, the resulting line is
+# loaded into the Readline editing buffer, allowing further modification.
+shopt -s histverify
 
 alias j='jobs -l'
 alias po=popd
@@ -32,7 +52,8 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-alias logcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-\*|Content JS)'"
+alias logcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
+alias debuglogcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-|Content JS|Offline cache|LOG:)'"
 
 kill_b2g() {
   adb shell stop b2g && adb shell start b2g
@@ -43,14 +64,17 @@ GAIADIR="/home/julien/travail/git/gaia"
 MOZCENTRAL="/home/julien/travail/hg/mozilla-central"
 MOZBETA="/home/julien/travail/hg/mozilla-beta"
 MOZB2G="/home/julien/travail/hg/mozilla-b2g18"
+MOZPERF="/home/julien/travail/hg/mozilla-b2g18-perf"
 B2G="/home/julien/travail/git/B2G"
 alias go_gaia="cd $GAIADIR"
 alias go_central="cd $MOZCENTRAL"
 alias go_b2g="cd $B2G"
 alias go_beta="cd $MOZBETA"
 alias go_18="cd $MOZB2G"
+alias go_perf="cd $MOZPERF"
 alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 alias adbforward="adb forward tcp:6000 tcp:60000"
+alias adbtest="adb forward tcp:2828 tcp:2828"
 alias b2gps="adb shell b2g-ps"
 
 go() {
@@ -74,19 +98,18 @@ launch_tests() {
     if [ ! -d profile/extensions/httpd ] ; then
         DEBUG=1 make
     fi
-
+    #~/firefox-aurora-64b/firefox --no-remote -profile profile/ http://test-agent.gaiamobile.org:8080/ &
     ~/firefox-nightly/firefox --no-remote -profile profile/ http://test-agent.gaiamobile.org:8080/ &
     make test-agent-server
 }
 
 
-GJSLINTDIR="~/travail/svn/closure-linter/"
-alias gjslint="PYTHONPATH=$GJSLINTDIR $GJSLINTDIR/closure_linter/gjslint.py"
-
 alias resetapps="adb push ~/travail/webapps.json /data/local/webapps/"
+
+alias hgup="hg qpop -a && hg pull -u && hg qpush -a"
 
 loc() {
   repwd="`pwd | sed 's/[]\\{}[\.$*+?^|()]/\\&/g'`"
-  locate --regex "^${repwd}.*$@" -i | grep -F -i "$@"
+  locate --regex "^${repwd}/.*$@" -i | grep -F -i "$@"
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+GJSLINTDIR="/home/julien/travail/svn/closure-linter/"
+
+export PYTHONPATH=$GJSLINTDIR
+$GJSLINTDIR/closure_linter/gjslint.py "$@"
+
+
+

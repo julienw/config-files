@@ -9,6 +9,7 @@ syntax on
 autocmd BufNewFile,BufRead *.jsm set filetype=javascript
 
 set bg=dark
+"colorscheme desert
 
 set hidden
 
@@ -19,9 +20,9 @@ set title
 set completeopt=
 set expandtab
 set ignorecase
-set infercase
+"set infercase
 set nowrap
-set smartcase
+"set smartcase
 set shiftround
 set shiftwidth=2
 set softtabstop=2
@@ -43,7 +44,7 @@ set showcmd
 
 " show the matching bracket/parenthesis/etc
 set showmatch
-set sidescrolloff=10
+set sidescrolloff=5
 set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 set number
 set numberwidth=5
@@ -83,7 +84,7 @@ autocmd BufWinLeave * call clearmatches()
 
 " auto clear trailing space
 " see http://vim.wikia.com/wiki/Remove_unwanted_spaces
-autocmd BufWritePre *.pl,*.js,*.jsm,*.css :%s/\s\+$//e
+"autocmd BufWritePre *.pl,*.js,*.jsm,*.css :%s/\s\+$//e
 
 " show long lines
 set textwidth=80
@@ -99,8 +100,11 @@ vmap < <gv
 " define Y like D
 nmap Y y$
 
-" display a warning when the file exernally changed
+" display a warning when the file exernally changed (not really good)
 au FileChangedShell * echo "Warning: File changed on disk"
+
+" search for the symbol under the cursor
+au CursorMoved * exe printf('match CursorColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " for gaia
 map <F8> :!gf<CR>
