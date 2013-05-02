@@ -108,7 +108,7 @@ au CursorMoved * exe printf('match CursorColumn /\V\<%s\>/', escape(expand('<cwo
 
 " for gaia
 map <F8> :!gf<CR>
-map <F9> :!gf -p<CR>
+map <F9> :!gf -o<CR>
 
 " use ctrl + space in supertab
 " in terminal windows, ctrl + space inserts null characters
