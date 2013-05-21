@@ -25,7 +25,6 @@ while getopts paoh opt ; do
       ;;
     h)
       echo "$(basename $0) [-p] [-a] [-h] [appName]"
-      echo "  -p        triggers production mode"
       echo "  -a        force flashing all gaia"
       echo "  -o        optimize the build"
       echo "  -h        shows this help screen"
