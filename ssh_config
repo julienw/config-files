@@ -2,3 +2,5 @@ Host *
    ControlMaster auto
    ControlPath ~/.ssh/master-%r@%h:%p
 
+Host hg.mozilla.org
+  User jwajsberg@mozilla.com
