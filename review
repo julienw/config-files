@@ -1,0 +1,35 @@
+#!/bin/sh
+
+echo "Finding gaia base directory..."
+while test ! -r README.md -a ! $(pwd) == "/" ; do
+  cd ..
+done
+
+basepwd=$(pwd)
+
+if test $(basename $basepwd) != "gaia" ; then
+  echo "ERROR : please be inside your gaia directory"
+  exit 1
+fi
+
+echo Found $basepwd
+
+echo Changed files:
+git diff --name-only b2g
+
+echo
+echo gjslint check
+git diff --name-only b2g | xargs gjslint --nojsdoc
+
+echo Press enter to view the jshint check
+pause
+
+echo
+echo jshint check
+git diff --name-only b2g | grep \.js$ | xargs jshint
+
+echo Press enter to view the diff
+pause
+
+git diff -U1000 b2g | vim -
+
