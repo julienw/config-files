@@ -14,8 +14,18 @@ fi
 
 echo Found $basepwd
 
+if test -n "$1" ; then 
+  echo Reseting and applying $1
+  git reset --hard b2g
+  if echo $1 | grep -q github ; then
+    hub am -3 "$1"
+  else
+    wget -O - "$1" | git am -3
+  fi
+fi
+
 echo Changed files:
-git diff --name-only b2g
+git diff --stat b2g
 
 echo
 echo gjslint check
