@@ -15,7 +15,9 @@ fi
 echo Found $basepwd
 
 if test -n "$1" ; then 
-  echo Reseting and applying $1
+  echo "Reseting and applying $1"
+  read -p "are you sure ?" enter
+
   git reset --hard b2g
   if echo $1 | grep -q github ; then
     hub am -3 "$1"
