@@ -57,7 +57,7 @@ if test -z "$flash_all" ; then
   if test -n "$1" ; then
     echo "Was defined on the command line: $1"
     export BUILD_APP_NAME=$1
-  elif [[ "$initialpwd" == */gaia/apps/* ]] ; then
+  elif [[ ( "$initialpwd" == */gaia/apps/* ) || ( "$initialpwd" == */gaia/test_apps/* ) ]] ; then
     gaia_subdir=${initialpwd##$basepwd}
     export BUILD_APP_NAME=$(echo $gaia_subdir | awk -F/ -e '{ print $3 }')
   fi
@@ -93,7 +93,9 @@ fi
 
 echo
 
-read -p "Is this correct ? Press Ctrl-C to abort"
+if [ -z "$BUILD_APP_NAME" ] ; then
+  read -p "Is this correct ? Press Ctrl-C to abort"
+fi
 
 make ${make_command}
 
