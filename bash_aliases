@@ -52,8 +52,8 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-alias logcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
-alias debuglogcat="while true ; do adb logcat ; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-|Content JS|Offline cache|LOG:)'"
+alias logcat="while true ; do adb logcat -v threadtime; done | grep -v parsing | egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
+alias debuglogcat="while true ; do adb logcat -v threadtime; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:)'"
 
 kill_b2g() {
   adb shell stop b2g && adb shell start b2g
@@ -95,11 +95,11 @@ find_git_commit() {
 
 launch_tests() {
     cd $GAIADIR
-    if [ ! -d profile/extensions/httpd ] ; then
+    if [ ! -d profile-debug/extensions/httpd ] ; then
         DEBUG=1 make
     fi
-    #~/firefox-aurora-64b/firefox --no-remote -profile profile/ http://test-agent.gaiamobile.org:8080/ &
-    ~/firefox-nightly/firefox --no-remote -profile profile/ http://test-agent.gaiamobile.org:8080/ &
+    #~/firefox-aurora-64b/firefox --no-remote -profile profile-debug/ http://test-agent.gaiamobile.org:8080/ &
+    ~/firefox-nightly/firefox --no-remote -profile profile-debug/ http://test-agent.gaiamobile.org:8080/ &
     make test-agent-server
 }
 
