@@ -1,15 +1,20 @@
 set nocompatible
 
+filetype indent plugin on
+
+" change the leader for some commands
+let mapleader = ","
+
 " this need the pathogen vim plugin
 call pathogen#infect()
 
-filetype indent plugin on
-
+set t_Co=256
 syntax on
-autocmd BufNewFile,BufRead *.jsm set filetype=javascript
-
 set bg=dark
+colorscheme distinguished
 "colorscheme desert
+
+autocmd BufNewFile,BufRead *.jsm set filetype=javascript
 
 set hidden
 
@@ -117,3 +122,11 @@ let g:SuperTabMappingBackward = '<s-nul>'
 
 " use jshint for syntastic
 let g:syntastic_javascript_checkers = ['jshint', 'gjslint']
+
+"for the indent guides plugin
+let g:indent_guides_start_level = 2
+let g:indent_guides_guides_size = 1
+
+" useful with the delitMate plugin
+imap <C-c> <CR><Esc>O
+
