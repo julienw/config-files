@@ -1,0 +1,14 @@
+#!/bin/bash
+
+BRANCH=`git symbolic-ref --short -q HEAD`
+
+if [ -z "$BRANCH" ] ; then
+  echo "You're in a detached HEAD"
+  exit 1
+fi
+
+git checkout squash
+git reset --hard $BRANCH
+
+EDITOR="sed -i '2,/^$/s/^pick\b/s/'" git rebase -i moz 
+

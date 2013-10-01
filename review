@@ -30,7 +30,7 @@ if test -n "$1" ; then
   echo "Reseting and applying $1"
   read -p "are you sure ?" enter
 
-  git reset --hard b2g
+  git reset --hard moz
 
   case "$1" in
     *github*)
@@ -40,22 +40,27 @@ if test -n "$1" ; then
       wget -O - "$1" | git am -3
       ;;
   esac
+  if test $? -ne 0 ; then
+    echo 'Reverting git am operation'
+    git am --abort
+    exit 1
+  fi
 fi
 
 echo Changed files:
-git diff --stat b2g
+git diff --stat moz
 
 echo
 echo gjslint check
-git diff --name-only b2g | xargs gjslint --nojsdoc
+git diff --name-only moz | xargs gjslint --nojsdoc
 
 read -p "Press enter to view the jshint check" enter
 
 echo
 echo jshint check
-git diff --name-only b2g | grep \.js$ | xargs jshint
+git diff --name-only moz | grep \.js$ | xargs jshint
 
 read -p "Press enter to view the diff" enter
 
-git diff -U1000 b2g | vim -
+git diff -U1000 moz | vim -
 

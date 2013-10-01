@@ -53,7 +53,7 @@ function _prompt_command() {
 PROMPT_COMMAND=_prompt_command
 
 alias logcat="while true ; do adb logcat -v threadtime; done | grep -v parsing | egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
-alias debuglogcat="while true ; do adb logcat -v threadtime; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:)'"
+alias debuglogcat="while true ; do adb logcat -v threadtime; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)'"
 
 kill_b2g() {
   adb shell stop b2g && adb shell start b2g
@@ -61,7 +61,7 @@ kill_b2g() {
 }
 
 GAIADIR="/home/julien/travail/git/gaia"
-MOZCENTRAL="/home/julien/travail/hg/mozilla-central"
+MOZCENTRAL="/home/julien/travail/hg/mozilla-central-really"
 MOZBETA="/home/julien/travail/hg/mozilla-beta"
 MOZB2G="/home/julien/travail/hg/mozilla-b2g18"
 MOZPERF="/home/julien/travail/hg/mozilla-b2g18-perf"
@@ -95,11 +95,12 @@ find_git_commit() {
 
 launch_tests() {
     cd $GAIADIR
-    if [ ! -d profile-debug/extensions/httpd ] ; then
-        DEBUG=1 make
+    if [ ! -d profile-tests/extensions/httpd ] ; then
+       PROFILE_FOLDER=profile-tests DEBUG=1 DESKTOP=0 make
+#        DEBUG=1 make
     fi
     #~/firefox-aurora-64b/firefox --no-remote -profile profile-debug/ http://test-agent.gaiamobile.org:8080/ &
-    ~/firefox-nightly/firefox --no-remote -profile profile-debug/ http://test-agent.gaiamobile.org:8080/ &
+    ~/firefox-nightly/firefox --no-remote -profile profile-tests/ http://test-agent.gaiamobile.org:8080/ &
     make test-agent-server
 }
 
