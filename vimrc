@@ -1,18 +1,36 @@
 set nocompatible
 
-filetype indent plugin on
 
 " change the leader for some commands
 let mapleader = ","
 
-" this need the pathogen vim plugin
-call pathogen#infect()
+filetype off                  " required!
+
+" Vundle configuration
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles
+Bundle 'Raimondi/delimitMate'
+Bundle 'mattn/emmet-vim'
+Bundle 'scrooloose/syntastic.git'
+Bundle 'ervandew/supertab'
+Bundle 'Lokaltog/vim-distinguished'
+Bundle 'tpope/vim-fugitive'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'sickill/vim-pasta.git'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'wincent/Command-T'
 
 set t_Co=256
 syntax on
 set bg=dark
-colorscheme distinguished
-"colorscheme desert
+filetype indent plugin on
 
 autocmd BufNewFile,BufRead *.jsm set filetype=javascript
 
@@ -80,13 +98,16 @@ command! W w !sudo tee % > /dev/null
 " highlight bad whitespaces
 " see http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-match ExtraWhitespace /\s\+$/
-match ExtraWhitespace /^\s*\t/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+"match ExtraWhitespace /\s\+$/
+"autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+"autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+"autocmd BufWinLeave * call clearmatches()
 
+" Show trailing whitepace and spaces before a tab:
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
+
+" "
 " auto clear trailing space
 " see http://vim.wikia.com/wiki/Remove_unwanted_spaces
 "autocmd BufWritePre *.pl,*.js,*.jsm,*.css :%s/\s\+$//e
@@ -130,3 +151,5 @@ let g:indent_guides_guides_size = 1
 " useful with the delitMate plugin
 imap <C-c> <CR><Esc>O
 
+colorscheme distinguished
+"colorscheme desert

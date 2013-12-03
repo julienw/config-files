@@ -41,7 +41,7 @@ if test -n "$1" ; then
       ;;
   esac
   if test $? -ne 0 ; then
-    echo 'Reverting git am operation'
+    read -p "Press enter to revert git am operation, CTRl-C to abort" enter
     git am --abort
     exit 1
   fi

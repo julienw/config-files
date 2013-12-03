@@ -11,4 +11,5 @@ git checkout squash
 git reset --hard $BRANCH
 
 EDITOR="sed -i '2,/^$/s/^pick\b/s/'" git rebase -i moz 
+git commit --amend
 
