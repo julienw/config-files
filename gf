@@ -71,8 +71,10 @@ if adb shell cat /data/local/webapps/webapps.json | grep -qs '"basePath": "/syst
 fi
 
 if [ "$production" = "1" ] ; then
-  export B2G_SYSTEM_APPS=1
+  export GAIA_INSTALL_PARENT=/system/b2g
   adb remount
+else
+  export GAIA_INSTALL_PARENT=/data/local
 fi
 
 if [ -n "$BUILD_APP_NAME" ] ; then
