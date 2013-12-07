@@ -26,6 +26,11 @@ Bundle 'sickill/vim-pasta.git'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'wincent/Command-T'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+"Bundle 'Rip-Rip/clang_complete'
 
 set t_Co=256
 syntax on
@@ -40,7 +45,9 @@ set hidden
 set title
 
 " text formatting
+"set completeopt=menu,menuone,longest
 set completeopt=
+set pumheight=15
 set expandtab
 set ignorecase
 "set infercase
@@ -140,6 +147,8 @@ map <F9> :!gf -o<CR>
 " in terminal windows, ctrl + space inserts null characters
 let g:SuperTabMappingForward = '<nul>'
 let g:SuperTabMappingBackward = '<s-nul>'
+" context completion
+"let g:SuperTabDefaultCompletionType = "context"
 
 " use jshint for syntastic
 let g:syntastic_javascript_checkers = ['jshint', 'gjslint']
