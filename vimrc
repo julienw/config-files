@@ -21,6 +21,7 @@ Bundle 'scrooloose/syntastic.git'
 Bundle 'ervandew/supertab'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'sickill/vim-pasta.git'
 Bundle 'kien/ctrlp.vim'
@@ -122,6 +123,8 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 " show long lines
 set textwidth=80
 set colorcolumn=+1
+
+set updatetime=750
 
 " remember where we were last time (note: viminfo is good by default)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
