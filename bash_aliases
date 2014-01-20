@@ -24,6 +24,8 @@ alias po=popd
 alias pu=pushd
 alias ls='ls -F --color=auto'
 
+#[[ -s "/etc/profile.d/vte.sh" ]] && . "/etc/profile.d/vte.sh"
+
 function _git_prompt() {
     local git_status="`LC_ALL=C git status -unormal 2>&1`"
     if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
@@ -61,6 +63,7 @@ kill_b2g() {
 }
 
 GAIADIR="/home/julien/travail/git/gaia"
+CDPATH=".:$GAIADIR:$GAIADIR/apps"
 MOZCENTRAL="/home/julien/travail/hg/mozilla-central-really"
 MOZBETA="/home/julien/travail/hg/mozilla-beta"
 MOZB2G="/home/julien/travail/hg/mozilla-b2g18"
@@ -72,6 +75,7 @@ alias go_b2g="cd $B2G"
 alias go_beta="cd $MOZBETA"
 alias go_18="cd $MOZB2G"
 alias go_perf="cd $MOZPERF"
+alias go_sms="go gaia sms"
 alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 alias adbforward="adb forward tcp:6000 tcp:60000"
 alias adbtest="adb forward tcp:2828 tcp:2828"
@@ -84,8 +88,8 @@ go() {
     fi
 
     eval go_$1
-    if [ -n "$2" -a -d "apps/$2" ] ; then
-      cd apps/$2
+    if [ -n "$2" ] ; then
+      cd apps/$2 || cd $2 || true
     fi
 }
 

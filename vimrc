@@ -18,11 +18,13 @@ Bundle 'gmarik/vundle'
 Bundle 'Raimondi/delimitMate'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic.git'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
 Bundle 'ervandew/supertab'
 Bundle 'Lokaltog/vim-distinguished'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'sickill/vim-pasta.git'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
@@ -35,8 +37,10 @@ Bundle 'honza/vim-snippets'
 
 set t_Co=256
 syntax on
-set bg=dark
+"colorscheme desert
+colorscheme distinguished
 filetype indent plugin on
+
 
 autocmd BufNewFile,BufRead *.jsm set filetype=javascript
 
@@ -92,7 +96,7 @@ set clipboard=unnamedplus
 " general
 set backspace=indent,eol,start
 set autoindent
-set smartindent
+"set smartindent
 
 noremap  <expr> <Home> (col('.') == matchend(getline('.'), '^\s*')+1 ? '0'  : '^')
 "noremap  <expr> <End>  (col('.') == match(getline('.'),    '\s*$')   ? '$'  : 'g_')
@@ -163,5 +167,8 @@ let g:indent_guides_guides_size = 1
 " useful with the delitMate plugin
 imap <C-c> <CR><Esc>O
 
-colorscheme distinguished
-"colorscheme desert
+" ident guides stuff
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=233 ctermbg=233
