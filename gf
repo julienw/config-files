@@ -24,7 +24,7 @@ while getopts paoh opt ; do
       export GAIA_OPTIMIZE=1
       ;;
     h)
-      echo "$(basename $0) [-p] [-a] [-h] [appName]"
+      echo "$(basename $0) [-a] [-h] [appName]"
       echo "  -a        force flashing all gaia"
       echo "  -o        optimize the build"
       echo "  -h        shows this help screen"
