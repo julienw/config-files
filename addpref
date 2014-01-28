@@ -1,0 +1,35 @@
+
+addpref() {
+  key="$1"
+  value="$2"
+
+  adb wait-for-device
+  adb shell <<-EOF
+    stop b2g
+    cd /data/b2g/mozilla/*.default/
+    echo 'user_pref("$key", $value);' >> prefs.js
+    start b2g
+    exit
+EOF
+}
+
+if [ -z "$1" ] ; then
+  echo "Please supply at least one argument."
+  exit 1
+fi
+
+case "$1" in
+  debug)
+    addpref 'devtools.debugger.forbid-certified-apps' 'false'
+    ;;
+  skia)
+    addpref 'gfx.canvas.azure.accelerated' 'true'
+    ;;
+  noskia)
+    addpref 'gfx.canvas.azure.accelerated' 'false'
+    ;;
+  *)
+    addpref "$1" "$2"
+    ;;
+esac
+

@@ -34,6 +34,7 @@ Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 Bundle 'elzr/vim-json'
+Bundle 'sjl/gundo.vim'
 "Bundle 'Rip-Rip/clang_complete'
 
 set t_Co=256
@@ -173,3 +174,7 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=233 ctermbg=233
+
+"super undo
+nnoremap <leader>u :GundoToggle<CR>
+
