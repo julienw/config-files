@@ -1,3 +1,4 @@
+#!/bin/sh
 
 addpref() {
   key="$1"
@@ -27,6 +28,13 @@ case "$1" in
     ;;
   noskia)
     addpref 'gfx.canvas.azure.accelerated' 'false'
+    ;;
+  marionette)
+    addpref 'marionette.defaultPrefs.enabled' 'true'
+    ;;
+  logs)
+    addpref 'ril.debugging.enabled' 'true'
+    addpref 'mms.debugging.enabled' 'true'
     ;;
   *)
     addpref "$1" "$2"
