@@ -160,7 +160,7 @@ let g:SuperTabMappingBackward = '<s-nul>'
 "let g:SuperTabDefaultCompletionType = "context"
 
 " use jshint for syntastic
-let g:syntastic_javascript_checkers = ['jshint', 'gjslint']
+let g:syntastic_javascript_checkers = ['jshint']
 
 "for the indent guides plugin
 let g:indent_guides_start_level = 2
