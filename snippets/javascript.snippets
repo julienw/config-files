@@ -1,2 +1,38 @@
 snippet stack
 	new Error().stack.replace(/\n/g, '|')
+
+snippet setup
+	setup(function(${1}) {
+		${0}
+	});
+
+snippet teardown
+	teardown(function(${1}) {
+		${0}
+	});
+
+snippet suite
+	suite('${1}', function() {
+		${0}
+	});
+
+snippet test
+	test('${1}', function(${2}) {
+		${0}
+	});
+
+snippet suiteSetup
+	suiteSetup(function(${1}) {
+		${0}
+	});
+
+snippet suiteTeardown
+	suiteTeardown(function(${1}) {
+		${0}
+	});
+
+snippet mocks
+	var mocksHelperFor${1} = new MocksHelper([
+		${0}
+	]).init();
+
