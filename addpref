@@ -1,9 +1,17 @@
 #!/bin/sh
 
+show_help() {
+  echo 'addpref <debug|skia|noskia|marionette|logs|rehash-manifest>'
+  echo 'addpref <key> <value>'
+  echo "   Put value between single _and_ double quotes if it's a string."
+  echo 'addpref <help|-help|--help>'
+}
+
 addpref() {
   key="$1"
   value="$2"
 
+  echo "Waiting for device..."
   adb wait-for-device
   adb shell <<-EOF
     stop b2g
@@ -16,6 +24,7 @@ EOF
 
 if [ -z "$1" ] ; then
   echo "Please supply at least one argument."
+  show_help
   exit 1
 fi
 
@@ -36,7 +45,18 @@ case "$1" in
     addpref 'ril.debugging.enabled' 'true'
     addpref 'mms.debugging.enabled' 'true'
     ;;
+  rehash-manifest)
+    addpref 'gecko.buildID' '"1"'
+    ;;
+  help|-help|--help)
+    show_help
+    ;;
   *)
+    if [ -z "$2" ] ; then
+      echo "Please supply 2 arguments if you don't use a shortcut."
+      show_help
+      exit 1
+    fi
     addpref "$1" "$2"
     ;;
 esac
