@@ -23,7 +23,7 @@ EOF
 }
 
 if [ -z "$1" ] ; then
-  echo "Please supply at least one argument."
+  echo "ERROR: Please supply at least one argument."
   show_help
   exit 1
 fi
@@ -53,7 +53,7 @@ case "$1" in
     ;;
   *)
     if [ -z "$2" ] ; then
-      echo "Please supply 2 arguments if you don't use a shortcut."
+      echo "ERROR: Please supply 2 arguments if you don't use a shortcut."
       show_help
       exit 1
     fi
