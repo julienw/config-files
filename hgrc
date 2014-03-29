@@ -1,0 +1,38 @@
+[ui]
+username = Julien Wajsberg <jwajsberg@mozilla.com>
+merge = internal:merge
+style = compact
+
+[diff]
+git = 1
+showfunc = 1
+unified = 8
+
+[defaults]
+commit = -v
+
+[extensions]
+color =
+mq =
+record =
+purge =
+graphlog =
+rebase =
+qbzimport = /home/julien/travail/hg/qimportbz
+trychooser = /home/julien/travail/hg/trychooser
+crecord = /home/julien/travail/hg/crecord/crecord
+
+[color]
+mode = ansi
+
+[alias]
+try = push -f ssh://hg.mozilla.org/try
+, = log -G -l9
+
+[hooks]
+post-try = hg phase --force --draft "mq()"
+
+[hostfingerprints]
+hg.dotclear.org = 8a:6f:c2:b8:47:2f:9a:c9:56:c5:a8:d3:61:6a:eb:64:17:59:39:78
+clearbricks.org = 8a:6f:c2:b8:47:2f:9a:c9:56:c5:a8:d3:61:6a:eb:64:17:59:39:78
+

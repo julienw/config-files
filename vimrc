@@ -178,3 +178,19 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=233 ctermbg=233
 "super undo
 nnoremap <leader>u :GundoToggle<CR>
 
+"Command T
+let g:CommandTFileScanner = "watchman"
+let g:CommandTMaxHeight = 30
+let g:CommandTMaxFiles = 500000
+"let g:CommandTInputDebounce = 50
+
+" tab handling
+noremap <C-Down> :tabn<CR>
+noremap <C-Up> :tabp<CR>
+noremap! <C-Down> <Esc>:tabn<CR>
+noremap! <C-Up> <Esc>:tabp<CR>
+
+" moving between changes
+noremap <C-j> g,
+noremap <C-k> g;
+
