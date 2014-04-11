@@ -1,0 +1,25 @@
+[color]
+  ui = auto
+[user]
+  name = Julien Wajsberg
+  email = felash@gmail.com
+
+#fetch = +refs/pull/*/head:refs/remotes/origin/pr/*"
+[rerere]
+  autoupdate = true
+  enabled = 1
+
+[diff]
+  context = 8
+
+[alias]
+  ocmmit = commit
+  ocmitt = commit
+  ocmit = commit
+  chcekout = checkout
+  diffc = diff --cached
+
+[remote-hg]
+	hg-git-compat = true
+[push]
+	default = simple
