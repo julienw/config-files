@@ -59,7 +59,7 @@ if test -z "$flash_all" ; then
     export BUILD_APP_NAME=$1
   elif [[ ( "$initialpwd" == */gaia/apps/* ) || ( "$initialpwd" == */gaia/test_apps/* ) ]] ; then
     gaia_subdir=${initialpwd##$basepwd}
-    export BUILD_APP_NAME=$(echo $gaia_subdir | awk -F/ -e '{ print $3 }')
+    export BUILD_APP_NAME=$(echo $gaia_subdir | awk -F/ '{ print $3 }')
   fi
 fi
 
