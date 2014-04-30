@@ -13,13 +13,11 @@
   context = 8
 
 [alias]
-  ocmmit = commit
-  ocmitt = commit
-  ocmit = commit
-  chcekout = checkout
   diffc = diff --cached
 
 [remote-hg]
 	hg-git-compat = true
 [push]
-	default = simple
+  default = simple
+[help]
+  autocorrect = 1

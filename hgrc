@@ -18,8 +18,12 @@ record =
 purge =
 graphlog =
 rebase =
-qbzimport = /home/julien/travail/hg/qimportbz
-trychooser = /home/julien/travail/hg/trychooser
+qbzimport = /home/julien/travail/hg/version-control-tools/hgext/qimportbz
+;trychooser = /home/julien/travail/hg/version-control-tools/hgext/trychooser
+qbackout = /home/julien/travail/hg/version-control-tools/hgext/qbackout
+mqext = /home/julien/travail/hg/version-control-tools/hgext/mqext
+mozext = /home/julien/travail/hg/version-control-tools/hgext/mozext
+bzexport = /home/julien/travail/hg/version-control-tools/hgext/bzexport
 crecord = /home/julien/travail/hg/crecord/crecord
 
 [color]
@@ -35,4 +39,7 @@ post-try = hg phase --force --draft "mq()"
 [hostfingerprints]
 hg.dotclear.org = 8a:6f:c2:b8:47:2f:9a:c9:56:c5:a8:d3:61:6a:eb:64:17:59:39:78
 clearbricks.org = 8a:6f:c2:b8:47:2f:9a:c9:56:c5:a8:d3:61:6a:eb:64:17:59:39:78
+
+[mozext]
+ircnick = julienw
 

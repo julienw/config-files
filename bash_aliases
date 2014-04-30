@@ -54,8 +54,11 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-alias logcat="while true ; do adb logcat -v threadtime; done | grep -v parsing | egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
-alias debuglogcat="while true ; do adb logcat -v threadtime; done | grep -v parsing | egrep '(JavaScript Error|>>>|\-\*\-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)'"
+alias adblogcat="while true ; do adb logcat -v threadtime; done"
+alias greplogcat="egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
+alias grepdebug="egrep '(JavaScript Error|>>>|\-\*\-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)'"
+alias logcat="adblogcat | greplogcat"
+alias debuglogcat="adblogcat | grepdebug"
 
 kill_b2g() {
   adb shell stop b2g && adb shell start b2g
@@ -63,7 +66,7 @@ kill_b2g() {
 }
 
 GAIADIR="/home/julien/travail/git/gaia"
-CDPATH=".:$GAIADIR:$GAIADIR/apps"
+CDPATH=".:$GAIADIR/apps"
 MOZCENTRAL="/home/julien/travail/hg/mozilla-central-really"
 MOZBETA="/home/julien/travail/hg/mozilla-beta"
 MOZB2G="/home/julien/travail/hg/mozilla-b2g18"
@@ -118,3 +121,6 @@ loc() {
   locate --regex "^${repwd}/.*$@" -i | grep -F -i "$@"
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
+
+PATH="~/travail/git/moz-git-tools:$PATH"
+
