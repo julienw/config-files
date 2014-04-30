@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git rebase -i `git merge-base moz/master HEAD`
