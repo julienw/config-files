@@ -39,7 +39,7 @@ done
 shift $(( OPTIND-1 ))
 
 echo "Finding gaia base directory..."
-while test ! -r README.md -a ! $(pwd) == "/" ; do
+while test ! -d .git -a ! $(pwd) == "/" ; do
   cd ..
 done
 
