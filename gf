@@ -99,5 +99,8 @@ if [ -z "$BUILD_APP_NAME" ] ; then
   read -p "Is this correct ? Press Ctrl-C to abort"
 fi
 
+# In case the adb daemon was not started in root
+adb root
+
 make ${make_command}
 
