@@ -44,6 +44,7 @@ case "$1" in
   logs)
     addpref 'ril.debugging.enabled' 'true'
     addpref 'mms.debugging.enabled' 'true'
+    addpref 'dom.mozApps.debug' 'true'
     ;;
   rehash-manifest)
     addpref 'gecko.buildID' '"1"'
