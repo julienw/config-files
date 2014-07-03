@@ -4,3 +4,7 @@ Host *
 
 Host hg.mozilla.org
   User jwajsberg@mozilla.com
+
+Host people.mozilla.org
+  User jwajsberg
+
