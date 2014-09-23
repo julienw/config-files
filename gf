@@ -49,22 +49,22 @@ while test ! -d .git -a ! $(pwd) == "/" ; do
   cd ..
 done
 
-basepwd=$(pwd)
-
-if test $(basename $basepwd) != "gaia" ; then
+gaiabasepwd=$(pwd)
+gaiabasedir=$(basename $gaiabasepwd)
+if test "${gaiabasedir#gaia}" == "$gaiabasedir" ; then
   echo "ERROR : please be inside your gaia directory"
   exit 1
 fi
 
-echo Found $basepwd
+echo Found $gaiabasepwd
 
 echo "Trying to find what you want to flash"
 if test -z "$flash_all" ; then
   if test -n "$1" ; then
     echo "Was defined on the command line: $1"
     export BUILD_APP_NAME=$1
-  elif [[ ( "$initialpwd" == */gaia/apps/* ) || ( "$initialpwd" == */gaia/test_apps/* ) ]] ; then
-    gaia_subdir=${initialpwd##$basepwd}
+  elif [[ ( "$initialpwd" == */$gaiabasedir/apps/* ) || ( "$initialpwd" == */$gaiabasedir/test_apps/* ) ]] ; then
+    gaia_subdir=${initialpwd##$gaiabasepwd}
     export BUILD_APP_NAME=$(echo $gaia_subdir | awk -F/ '{ print $3 }')
   fi
 fi
