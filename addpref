@@ -31,6 +31,7 @@ fi
 case "$1" in
   debug)
     addpref 'devtools.debugger.forbid-certified-apps' 'false'
+    addpref 'devtools.debugger.prompt-connection' 'false'
     ;;
   skia)
     addpref 'gfx.canvas.azure.accelerated' 'true'
