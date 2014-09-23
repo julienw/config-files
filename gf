@@ -91,7 +91,6 @@ fi
 
 dpi=$(cat "$dpi_file")
 export GAIA_DEV_PIXELS_PER_PX=$dpi
-echo "Will flash @$dpi assets"
 
 if [ "$production" = "1" ] ; then
   export GAIA_INSTALL_PARENT=/system/b2g
@@ -117,7 +116,7 @@ if [ -n "$GAIA_OPTIMIZE" ] ; then
 fi
 
 if [ "$dpi" != "1" ] ; then
-  echo -n ", with @$dpi assets"
+  echo -n ", with ${bold}@${dpi}x${offbold} assets"
 fi
 
 echo
