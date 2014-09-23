@@ -4,7 +4,10 @@
 # easily flash your gaia applications
 
 # show all run commands
-# set -x
+#set -x
+
+# stop at the first error
+set -e
 
 # some things to put text in bold
 bold=`tput smso`
@@ -13,6 +16,9 @@ offbold=`tput rmso`
 # saving where we are
 initialpwd=$(pwd)
 make_command="install-gaia"
+
+# finding where I am installed
+basedir=$(dirname "$(readlink -f "$0")")
 
 # parsing options
 while getopts paoh opt ; do
@@ -63,12 +69,29 @@ if test -z "$flash_all" ; then
   fi
 fi
 
-echo "Trying to find the device image mode"
-echo " (checking for device)"
+echo "Checking for device..."
 adb wait-for-device
+echo "Trying to find the device image mode"
 if adb shell cat /data/local/webapps/webapps.json | grep -qs '"basePath": "/system' ; then
   production=1
 fi
+
+echo "Trying to find the device's name"
+# note: adb shell getprop seems to end lines with \r which is not trimmed by bash
+device_name=$(adb shell getprop ro.product.device | sed -r -e 's/[[:space:]]+$//')
+dpi_file="$basedir/devices/dpi/__default"
+
+if [ -n "$device_name" ] ; then
+  echo "Found $device_name"
+  device_dpi_file="$basedir/devices/dpi/$device_name"
+  if [ -r "$device_dpi_file" ] ; then
+    dpi_file="$device_dpi_file"
+  fi
+fi
+
+dpi=$(cat "$dpi_file")
+export GAIA_DEV_PIXELS_PER_PX=$dpi
+echo "Will flash @$dpi assets"
 
 if [ "$production" = "1" ] ; then
   export GAIA_INSTALL_PARENT=/system/b2g
@@ -91,6 +114,10 @@ fi
 
 if [ -n "$GAIA_OPTIMIZE" ] ; then
   echo -n ", ${bold}optimizing${offbold}"
+fi
+
+if [ "$dpi" != "1" ] ; then
+  echo -n ", with @$dpi assets"
 fi
 
 echo
