@@ -78,7 +78,7 @@ fi
 
 echo "Trying to find the device's name"
 # note: adb shell getprop seems to end lines with \r which is not trimmed by bash
-device_name=$(adb shell getprop ro.product.device | sed -r -e 's/[[:space:]]+$//')
+device_name=$(adb shell getprop ro.product.device | sed 's/\s*$//')
 dpi_file="$basedir/devices/dpi/__default"
 
 if [ -n "$device_name" ] ; then
