@@ -18,7 +18,7 @@ initialpwd=$(pwd)
 make_command="install-gaia"
 
 # finding where I am installed
-basedir=$(dirname "$(readlink -f "$0")")
+basedir=$(dirname "$(readlink "$0")")
 
 # parsing options
 while getopts paoh opt ; do
