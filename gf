@@ -17,8 +17,14 @@ offbold=`tput rmso`
 initialpwd=$(pwd)
 make_command="install-gaia"
 
-# finding where I am installed
-basedir=$(dirname "$(readlink "$0")")
+#nit_dir="$(dirname /home/julien/bin/gf)"; target_dir="" finding where I am installed
+# can't use readlink -f to stay compatible with MacOS X
+
+init_dir="$(dirname "$0")"
+target_dir="$(dirname "$(readlink "$0")")"
+
+init_dir=toto
+basedir="$(cd $init_dir && cd $target_dir && pwd -P)"
 
 # parsing options
 while getopts paoh opt ; do
