@@ -23,7 +23,6 @@ make_command="install-gaia"
 init_dir="$(dirname "$0")"
 target_dir="$(dirname "$(readlink "$0")")"
 
-init_dir=toto
 basedir="$(cd $init_dir && cd $target_dir && pwd -P)"
 
 # parsing options
