@@ -85,7 +85,27 @@ alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 alias adbforward="adb forward tcp:6000 tcp:60000"
 alias adbtest="adb forward tcp:2828 tcp:2828"
 alias b2gps="adb shell b2g-ps"
-alias pushmydata='adb shell stop b2g ; adb shell rm -r /data/local/storage/persistent/chrome/idb/*{csot,ssm}* ; for i in *{csot,ssm}* ; do adb push $i /data/local/storage/persistent/chrome/idb/$i ; done ; adb shell start b2g'
+
+pushmydata() {
+  for tentativedir in permanent persistent ; do
+    true=`adb shell "[ -d /data/local/storage/$tentativedir ] && echo true" | tr -d '\r'`
+    if [ "$true" = "true" ] ; then
+      dir="$tentativedir"
+    fi
+  done
+
+  if [ -z "$dir" ] ; then
+    echo "Storage directory not found, exiting."
+    exit 1
+  fi
+
+  #adb shell stop b2g
+  adb shell rm -r /data/local/storage/$dir/chrome/idb/*{csot,ssm}*
+  for i in *{csot,ssm}* ; do
+    adb push $i /data/local/storage/$dir/chrome/idb/$i
+  done
+  #adb shell start b2g
+}
 
 go() {
     if [ -z "$1" ] ; then
