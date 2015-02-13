@@ -45,6 +45,7 @@ case "$1" in
   logs)
     addpref 'ril.debugging.enabled' 'true'
     addpref 'mms.debugging.enabled' 'true'
+    addpref 'network.debugging.enabled' 'true'
     addpref 'dom.mozApps.debug' 'true'
     ;;
   rehash-manifest)
