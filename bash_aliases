@@ -56,7 +56,7 @@ PROMPT_COMMAND=_prompt_command
 
 alias adblogcat="while true ; do adb logcat -v threadtime; done"
 alias greplogcat="egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
-alias grepdebug="egrep '(JavaScript Error|>>>|\-\*\-|=\*=|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)'"
+alias grepdebug="egrep '(JavaScript Error|>>>|\-\*\-|=\*=|-@-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)'"
 alias logcat="adblogcat | greplogcat"
 alias debuglogcat="adblogcat | grepdebug"
 
