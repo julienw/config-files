@@ -148,4 +148,6 @@ loc() {
 PATH="~/travail/git/moz-git-tools:$PATH"
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
+export PERL5LIB="$HOME/perl5/lib/perl5/"
+
 
