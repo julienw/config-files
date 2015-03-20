@@ -26,7 +26,7 @@ target_dir="$(dirname "$(readlink "$0")")"
 basedir="$(cd $init_dir && cd $target_dir && pwd -P)"
 
 # parsing options
-while getopts paoh opt ; do
+while getopts aopeh opt ; do
   case $opt in
     a)
       flash_all=1
@@ -34,10 +34,18 @@ while getopts paoh opt ; do
     o)
       export GAIA_OPTIMIZE=1
       ;;
+    p)
+      production=1
+      ;;
+    e)
+      production=0
+      ;;
     h)
-      echo "$(basename $0) [-a] [-o] [-h] [appName]..."
+      echo "$(basename $0) [-a] [-o] [-h] [-e | -p] [appName]..."
       echo "  -a        force flashing all gaia"
       echo "  -o        optimize the build"
+      echo "  -p        force pushing to /system (production mode)"
+      echo "  -e        force pushing to /data (eng mode)"
       echo "  -h        shows this help screen"
       echo "  appName   the app(s) to flash"
       echo "Without any appName, this script tries to figure in which directory you are to flash this app"
@@ -65,9 +73,12 @@ echo Found $gaiabasepwd
 
 echo "Checking for device..."
 adb wait-for-device
-echo "Trying to find the device image mode"
-if adb shell cat /data/local/webapps/webapps.json | grep -qs '"basePath": "/system' ; then
-  production=1
+
+if [ -z "$production" ] ; then
+  echo "Trying to find the device image mode"
+  if adb shell cat /data/local/webapps/webapps.json | grep -qs '"basePath": "/system' ; then
+    production=1
+  fi
 fi
 
 echo "Trying to find the device's name"
@@ -105,7 +116,7 @@ do_flash() {
   if [ "$production" = "1" ] ; then
     echo -n ", in ${bold}production${offbold} mode"
   else
-    echo -n ", in ${bold}dev${offbold} mode"
+    echo -n ", in ${bold}eng${offbold} mode"
   fi
 
   if [ -n "$GAIA_OPTIMIZE" ] ; then
