@@ -43,6 +43,8 @@ syntax sync fromstart
 "colorscheme desert
 colorscheme distinguished
 filetype indent plugin on
+" don't try to highlight super long lines
+set synmaxcol=1000
 
 
 autocmd BufNewFile,BufRead *.jsm set filetype=javascript
@@ -76,6 +78,7 @@ set hlsearch
 set lazyredraw
 "set list
 "set listchars=tab:>-,trail:-
+set list listchars=nbsp:¤,tab:··,trail:¤,extends:▶,precedes:◀
 set ruler
 set scrolloff=5
 set showcmd
