@@ -85,6 +85,7 @@ alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 alias adbforward="adb forward tcp:6000 tcp:60000"
 alias adbtest="adb forward tcp:2828 tcp:2828"
 alias b2gps="adb shell b2g-ps"
+alias pushapp="install-to-adb"
 
 pushmydata() {
   for tentativedir in permanent persistent ; do
