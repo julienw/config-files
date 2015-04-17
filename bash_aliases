@@ -99,12 +99,17 @@ pushmydata() {
     exit 1
   fi
 
-  #adb shell stop b2g
-  adb shell rm -r /data/local/storage/$dir/chrome/idb/*{csot,ssm}*
+  adb shell stop b2g
+  for i in csot ssm ; do
+    # "rm -r /.../*{csot,ssm}*" stops at the first file that does not exist.
+    # "rm -rf" does not but is not available on all gonks.
+    adb shell rm -r /data/local/storage/$dir/chrome/idb/*$i*
+  done
+
   for i in *{csot,ssm}* ; do
     adb push $i /data/local/storage/$dir/chrome/idb/$i
   done
-  #adb shell start b2g
+  adb shell start b2g
 }
 
 go() {
