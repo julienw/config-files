@@ -55,8 +55,10 @@ function _prompt_command() {
 PROMPT_COMMAND=_prompt_command
 
 alias adblogcat="while true ; do adb logcat -v threadtime; done"
-alias greplogcat="egrep '(JavaScript Error|>>>|Content JS|Offline cache|LOG:)'"
-alias grepdebug="egrep '(JavaScript Error|>>>|\-\*\-|=\*=|-@-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)'"
+GREPLOGCATRE="(JavaScript Error|>>>|Content JS|Offline cache|LOG:)"
+GREPDEBUGRE="(JavaScript Error|>>>|\-\*\-|=\*=|-@-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)"
+alias greplogcat="awk ' /: \w/ { printing = 0 } /${GREPLOGCATRE}/ { printing = 1; print \"\033[33m\" \$0 \"\033[39m\"; next } printing == 1 { print }'"
+alias grepdebug="awk ' /: \w/ { printing = 0 } /${GREPDEBUGRE}/ { printing = 1; print \"\033[33m\" \$0 \"\033[39m\"; next } printing == 1 { print }'"
 alias logcat="adblogcat | greplogcat"
 alias debuglogcat="adblogcat | grepdebug"
 
@@ -97,7 +99,7 @@ pushmydata() {
 
   if [ -z "$dir" ] ; then
     echo "Storage directory not found, exiting."
-    exit 1
+    return 1
   fi
 
   adb shell stop b2g
@@ -151,7 +153,7 @@ loc() {
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
 
-PATH="~/travail/git/moz-git-tools:$PATH"
+PATH="~/travail/git/moz-git-tools:$PATH:~/node_modules/.bin"
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
