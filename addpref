@@ -61,6 +61,16 @@ case "$1" in
   ungod)
     addpref 'dom.apps.developer_mode' 'false'
     ;;
+  enable-sw)
+    addpref 'dom.serviceWorkers.interception.enabled' 'true'
+    addpref 'devtools.webconsole.filter.serviceworkers' 'true'
+    addpref 'dom.serviceWorkers.enabled' 'true'
+    ;;
+  disable-sw)
+    addpref 'dom.serviceWorkers.interception.enabled' 'false'
+    addpref 'devtools.webconsole.filter.serviceworkers' 'false'
+    addpref 'dom.serviceWorkers.enabled' 'false'
+    ;;
   help|-help|--help)
     show_help
     exit 0
