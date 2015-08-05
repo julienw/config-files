@@ -43,7 +43,8 @@ call vundle#end()            " required
 
 set t_Co=256
 syntax on
-syntax sync fromstart
+autocmd BufEnter * :syntax sync fromstart
+
 "colorscheme desert
 colorscheme distinguished
 filetype indent plugin on
