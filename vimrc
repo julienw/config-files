@@ -7,35 +7,39 @@ let mapleader = ","
 filetype off                  " required!
 
 " Vundle configuration
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
-" My Bundles
-Bundle 'Raimondi/delimitMate'
-Bundle 'mattn/emmet-vim'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'ervandew/supertab'
-Bundle 'Lokaltog/vim-distinguished'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'sickill/vim-pasta.git'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'wincent/Command-T'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-Bundle 'elzr/vim-json'
-Bundle 'sjl/gundo.vim'
-"Bundle 'Rip-Rip/clang_complete'
+" My Plugins
+Plugin 'Raimondi/delimitMate'
+Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'ervandew/supertab'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'sickill/vim-pasta.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'wincent/Command-T'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'elzr/vim-json'
+Plugin 'sjl/gundo.vim'
+Plugin 'rust-lang/rust.vim'
+"Plugin 'Rip-Rip/clang_complete'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 set t_Co=256
 syntax on
