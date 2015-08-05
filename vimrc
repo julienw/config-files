@@ -191,6 +191,7 @@ nnoremap <leader>u :GundoToggle<CR>
 let g:CommandTFileScanner = "watchman"
 let g:CommandTMaxHeight = 30
 let g:CommandTMaxFiles = 500000
+let g:CommandTSCMDirectories='.git,.hg,.svn,.bzr,_darcs,manifest.webapp'
 "let g:CommandTInputDebounce = 50
 
 " tab handling
