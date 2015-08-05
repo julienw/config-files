@@ -21,3 +21,6 @@
   default = simple
 [help]
   autocorrect = 1
+[bz]
+	browser = firefox3
+	firefox-profile = default
