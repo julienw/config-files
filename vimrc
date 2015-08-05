@@ -188,7 +188,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=233 ctermbg=233
 nnoremap <leader>u :GundoToggle<CR>
 
 "Command T
-let g:CommandTFileScanner = "watchman"
+let g:CommandTFileScanner = "git"
 let g:CommandTMaxHeight = 30
 let g:CommandTMaxFiles = 500000
 let g:CommandTSCMDirectories='.git,.hg,.svn,.bzr,_darcs,manifest.webapp'
