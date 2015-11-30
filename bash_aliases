@@ -54,11 +54,15 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
+grepalias() {
+  alias grep$1="awk ' /: \w/ { printing = 0 } /$2/ { printing = 1; print \"\033[33m\" \$0 \"\033[39m\"; next } printing == 1 { print }'"
+}
+
 alias adblogcat="while true ; do adb logcat -v threadtime; done"
 GREPLOGCATRE="(JavaScript Error|>>>|Content JS|Offline cache|LOG:)"
 GREPDEBUGRE="(JavaScript Error|>>>|\-\*\-|=\*=|-@-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)"
-alias greplogcat="awk ' /: \w/ { printing = 0 } /${GREPLOGCATRE}/ { printing = 1; print \"\033[33m\" \$0 \"\033[39m\"; next } printing == 1 { print }'"
-alias grepdebug="awk ' /: \w/ { printing = 0 } /${GREPDEBUGRE}/ { printing = 1; print \"\033[33m\" \$0 \"\033[39m\"; next } printing == 1 { print }'"
+grepalias logcat "$GREPLOGCATRE"
+grepalias debug "$GREPDEBUGRE"
 alias logcat="adblogcat | greplogcat"
 alias debuglogcat="adblogcat | grepdebug"
 
