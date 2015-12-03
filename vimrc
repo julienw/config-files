@@ -15,6 +15,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " My Plugins
+Plugin 'tpope/vim-repeat'
 Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
 Plugin 'scrooloose/syntastic.git'
@@ -36,6 +37,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'elzr/vim-json'
 Plugin 'sjl/gundo.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'svermeulen/vim-easyclip'
 "Plugin 'Rip-Rip/clang_complete'
 
 " All of your Plugins must be added before the following line
