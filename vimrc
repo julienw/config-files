@@ -172,8 +172,18 @@ let g:SuperTabMappingBackward = '<s-nul>'
 " context completion
 "let g:SuperTabDefaultCompletionType = "context"
 
-" use jshint for syntastic
-let g:syntastic_javascript_checkers = ['jshint']
+" use jshint or esling for syntastic
+function! ChooseLinter()
+  if findfile('.jshintrc', '.;') != ''
+    let b:syntastic_javascript_checkers = ['jshint']
+  elseif findfile('.eslintrc', '.;') != '' || findfile('.eslintrc.json', '.;') != ''
+    let b:syntastic_javascript_checkers = ['eslint']
+  else
+    let b:syntastic_javascript_checkers = ['jshint']
+  endif
+endfunc
+
+autocmd FileType javascript :call ChooseLinter()
 
 "for the indent guides plugin
 let g:indent_guides_start_level = 2
