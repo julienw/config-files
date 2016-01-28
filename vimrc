@@ -175,11 +175,11 @@ let g:SuperTabMappingBackward = '<s-nul>'
 " use jshint or esling for syntastic
 function! ChooseLinter()
   if findfile('.jshintrc', '.;') != ''
-    let b:syntastic_javascript_checkers = ['jshint']
+    let g:syntastic_javascript_checkers = ['jshint']
   elseif findfile('.eslintrc', '.;') != '' || findfile('.eslintrc.json', '.;') != ''
-    let b:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_javascript_checkers = ['eslint']
   else
-    let b:syntastic_javascript_checkers = ['jshint']
+    let g:syntastic_javascript_checkers = ['jshint']
   endif
 endfunc
 
