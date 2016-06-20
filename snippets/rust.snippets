@@ -1,0 +1,7 @@
+snippet display
+	impl fmt::Display for ${1} {
+		fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+			${0}
+		}
+	}
+
