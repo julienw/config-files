@@ -157,9 +157,9 @@ loc() {
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
 
-PATH="~/travail/git/moz-git-tools:$PATH:~/node_modules/.bin"
+PATH="$HOME/travail/git/moz-git-tools:$PATH:$HOME/node_modules/.bin:$HOME/n/bin"
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
 
-
+export N_PREFIX=$HOME/n

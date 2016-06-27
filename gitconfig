@@ -24,3 +24,5 @@
 [bz]
 	browser = firefox3
 	firefox-profile = default
+[core]
+	excludesfile = /home/julien/.gitignore
