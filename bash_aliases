@@ -163,3 +163,7 @@ export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
 
 export N_PREFIX=$HOME/n
+
+export VISUAL=vim
+export EDITOR=$VISUAL
+
