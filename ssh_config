@@ -8,3 +8,8 @@ Host hg.mozilla.org
 Host people.mozilla.org
   User jwajsberg
 
+Host cal
+  User ubuntu
+  Hostname calendar.knilxof.org
+  IdentityFile ~/.ssh/aws
+
