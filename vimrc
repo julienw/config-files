@@ -46,7 +46,6 @@ Plugin 'digitaltoad/vim-jade'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-set t_Co=256
 syntax on
 autocmd BufEnter * :syntax sync fromstart
 
@@ -173,7 +172,35 @@ let g:SuperTabMappingBackward = '<s-nul>'
 " context completion
 "let g:SuperTabDefaultCompletionType = "context"
 
-" use jshint or esling for syntastic
+" syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_aggregating_errors = 1
+
+" find right executable for eslint
+function! FindESLintBinary()
+  let l:npm_bin = ''
+  let l:eslint = 'eslint'
+
+  if executable('npm')
+      let l:npm_bin = split(system('npm bin'), '\n')[0]
+  endif
+
+  if strlen(l:npm_bin) && executable(l:npm_bin . '/eslint')
+    let l:eslint = l:npm_bin . '/eslint'
+  endif
+
+  let b:syntastic_javascript_eslint_exec = l:eslint
+endfunction
+
+" use jshint or eslint for syntastic
 function! ChooseLinter()
   if findfile('.jshintrc', '.;') != ''
     let g:syntastic_javascript_checkers = ['jshint']
@@ -182,9 +209,14 @@ function! ChooseLinter()
   else
     let g:syntastic_javascript_checkers = ['jshint']
   endif
+  :call FindESLintBinary()
 endfunc
 
 autocmd FileType javascript :call ChooseLinter()
+
+" vim-javascript plugin
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 
 "for the indent guides plugin
 let g:indent_guides_start_level = 2
@@ -197,7 +229,7 @@ imap <C-c> <CR><Esc>O
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=233 ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#121212 ctermbg=233
 
 "super undo
 nnoremap <leader>u :GundoToggle<CR>
