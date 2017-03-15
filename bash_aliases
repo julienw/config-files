@@ -162,8 +162,9 @@ export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
 
-export N_PREFIX=$HOME/n
-
 export VISUAL=vim
 export EDITOR=$VISUAL
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
