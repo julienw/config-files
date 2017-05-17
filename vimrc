@@ -46,6 +46,8 @@ Plugin 'digitaltoad/vim-jade'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+runtime macros/matchit.vim
+
 syntax on
 autocmd BufEnter * :syntax sync fromstart
 
@@ -250,4 +252,3 @@ noremap! <C-Up> <Esc>:tabp<CR>
 " moving between changes
 noremap <C-j> g,
 noremap <C-k> g;
-
