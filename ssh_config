@@ -4,12 +4,22 @@ Host *
 
 Host hg.mozilla.org
   User jwajsberg@mozilla.com
+  IdentityFile ~/.ssh/mozilla
 
-Host people.mozilla.org
+Host reviewboard-hg.mozilla.org
+  User jwajsberg@mozilla.com
+  IdentityFile ~/.ssh/mozilla
+
+Host people
   User jwajsberg
+  IdentityFile ~/.ssh/mozilla
+  Hostname people-mozilla.org
 
 Host cal
   User ubuntu
   Hostname calendar.knilxof.org
   IdentityFile ~/.ssh/aws
 
+Host petitevallee.everlong.org
+  User admin
+  IdentityFile ~/.ssh/petitevallee

@@ -26,3 +26,7 @@
 	firefox-profile = default
 [core]
 	excludesfile = /home/julien/.gitignore
+[cinnabar]
+	helper = /home/julien/travail/git/git-cinnabar/git-cinnabar-helper
+[mozreview]
+	nickname = julienw
