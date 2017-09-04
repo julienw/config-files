@@ -12,17 +12,12 @@ if test -n "$1" ; then
   esac
 fi
 
-echo "Finding gaia base directory..."
+echo "Finding repository's base directory..."
 while test ! -d .git -a `pwd` != "/" ; do
   cd ..
 done
 
 basepwd=`pwd`
-
-if test `basename $basepwd` != "gaia" ; then
-  echo "ERROR : please be inside your gaia directory"
-  exit 1
-fi
 
 echo Found $basepwd
 
@@ -51,14 +46,8 @@ echo Changed files:
 git diff --stat moz
 
 echo
-echo gjslint check
-git diff --name-only moz | xargs gjslint --nojsdoc
-
-read -p "Press enter to view the jshint check" enter
-
-echo
-echo jshint check
-git diff --name-only moz | grep \.js$ | xargs jshint
+echo eslint check
+git diff --name-only moz | grep \.js$ | xargs ./node_modules/.bin/eslint
 
 read -p "Press enter to view the diff" enter
 

@@ -1,5 +1,7 @@
 # don't ignore line starting with a space
-HISTCONTROL=ignoredups
+HISTCONTROL=ignoredups:erasedups
+# big history
+HISTSIZE=100000
 # Option 'histreedit' allows users to re-edit a failed history substitution. 
 shopt -s histreedit
 # If set, minor errors in the spelling of a directory component in a cd command
@@ -18,6 +20,8 @@ shopt -s cmdhist
 # not immediately passed to the shell parser. Instead, the resulting line is
 # loaded into the Readline editing buffer, allowing further modification.
 shopt -s histverify
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
 
 alias j='jobs -l'
 alias po=popd
@@ -54,74 +58,14 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-grepalias() {
-  alias grep$1="awk ' /: \w/ { printing = 0 } /$2/ { printing = 1; print \"\033[33m\" \$0 \"\033[39m\"; next } printing == 1 { print }'"
-}
-
-alias adblogcat="while true ; do adb logcat -v threadtime; done"
-GREPLOGCATRE="(JavaScript Error|>>>|Content JS|Offline cache|LOG:)"
-GREPDEBUGRE="(JavaScript Error|>>>|\-\*\-|=\*=|-@-|Content JS|Offline cache|LOG:|MobileMessageDatabaseService:|Network Worker)"
-grepalias logcat "$GREPLOGCATRE"
-grepalias debug "$GREPDEBUGRE"
-alias logcat="adblogcat | greplogcat"
-alias debuglogcat="adblogcat | grepdebug"
-
-kill_b2g() {
-  adb shell stop b2g && adb shell start b2g
-#    adb shell kill `adb shell ps | grep 'b2g/b2g' | awk '{ print $2 }'`
-}
-
-GAIADIR="/home/julien/travail/git/gaia"
-CDPATH=".:$GAIADIR/apps"
-MOZCENTRAL="/home/julien/travail/hg/mozilla-central-really"
-MOZBETA="/home/julien/travail/hg/mozilla-beta"
-MOZB2G="/home/julien/travail/hg/mozilla-b2g18"
-MOZPERF="/home/julien/travail/hg/mozilla-b2g18-perf"
-B2G="/home/julien/travail/git/B2G"
-FLASHTOOL="/home/julien/travail/git/B2G-flash-tool"
-alias go_gaia="cd $GAIADIR"
-alias go_central="cd $MOZCENTRAL"
-alias go_b2g="cd $B2G"
-alias go_beta="cd $MOZBETA"
-alias go_18="cd $MOZB2G"
+CDPATH=".:~/travail/git/"
+MOZPERF="/home/julien/travail/git/perf.html"
 alias go_perf="cd $MOZPERF"
-alias go_flash="cd $FLASHTOOL"
-alias go_sms="go gaia sms"
-alias build_b2g="go_mozcentral && hg pull -u && make -f client.mk"
 alias adbforward="adb forward tcp:6000 tcp:60000"
-alias adbtest="adb forward tcp:2828 tcp:2828"
-alias b2gps="adb shell b2g-ps"
-alias pushapp="install-to-adb"
-
-pushmydata() {
-  for tentativedir in permanent persistent ; do
-    true=`adb shell "[ -d /data/local/storage/$tentativedir ] && echo true" | tr -d '\r'`
-    if [ "$true" = "true" ] ; then
-      dir="$tentativedir"
-    fi
-  done
-
-  if [ -z "$dir" ] ; then
-    echo "Storage directory not found, exiting."
-    return 1
-  fi
-
-  adb shell stop b2g
-  for i in csot ssm ; do
-    # "rm -r /.../*{csot,ssm}*" stops at the first file that does not exist.
-    # "rm -rf" does not but is not available on all gonks.
-    adb shell rm -r /data/local/storage/$dir/chrome/idb/*$i*
-  done
-
-  for i in *{csot,ssm}* ; do
-    adb push $i /data/local/storage/$dir/chrome/idb/$i
-  done
-  adb shell start b2g
-}
 
 go() {
     if [ -z "$1" ] ; then
-      go_gaia
+      go_perf
       return
     fi
 
@@ -135,20 +79,6 @@ find_git_commit() {
     git cherry $1 | awk '{ print $2 }' | xargs -n 1 git branch --contains | sort | uniq
 }
 
-launch_tests() {
-    cd $GAIADIR
-    if [ ! -d profile-tests/extensions/httpd ] ; then
-       PROFILE_FOLDER=profile-tests DEBUG=1 DESKTOP=0 make
-#        DEBUG=1 make
-    fi
-    #~/firefox-aurora-64b/firefox --no-remote -profile profile-debug/ http://test-agent.gaiamobile.org:8080/ &
-    ~/firefox-nightly/firefox --no-remote -profile profile-tests/ http://test-agent.gaiamobile.org:8080/ &
-    make test-agent-server
-}
-
-
-alias resetapps="adb push ~/travail/webapps.json /data/local/webapps/"
-
 alias hgup="hg qpop -a && hg pull -u && hg qpush -a"
 
 loc() {
@@ -157,14 +87,10 @@ loc() {
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
 
-PATH="$HOME/travail/git/moz-git-tools:$PATH:$HOME/node_modules/.bin:$HOME/n/bin"
+PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/travail/git/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
 
 export VISUAL=vim
 export EDITOR=$VISUAL
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
