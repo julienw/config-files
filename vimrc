@@ -15,10 +15,12 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " My Plugins
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'w0rp/ale'
 Plugin 'tpope/vim-repeat'
 Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/syntastic.git'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'ervandew/supertab'
@@ -29,7 +31,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'sickill/vim-pasta.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'wincent/Command-T'
+Plugin 'wincent/command-t'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
@@ -53,6 +55,7 @@ autocmd BufEnter * :syntax sync fromstart
 
 "colorscheme desert
 colorscheme distinguished
+
 filetype indent plugin on
 " don't try to highlight super long lines
 set synmaxcol=1000
@@ -97,7 +100,7 @@ set showcmd
 " show the matching bracket/parenthesis/etc
 set showmatch
 set sidescrolloff=5
-set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+"set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 set number
 set numberwidth=5
 
@@ -163,58 +166,12 @@ au FileChangedShell * echo "Warning: File changed on disk"
 " search for the symbol under the cursor
 au CursorMoved * exe printf('match CursorColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
-" for gaia
-map <F8> :!gf<CR>
-map <F9> :!gf -o<CR>
-
 " use ctrl + space in supertab
 " in terminal windows, ctrl + space inserts null characters
 let g:SuperTabMappingForward = '<nul>'
 let g:SuperTabMappingBackward = '<s-nul>'
 " context completion
 "let g:SuperTabDefaultCompletionType = "context"
-
-" syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_aggregating_errors = 1
-
-" find right executable for eslint
-function! FindESLintBinary()
-  let l:npm_bin = ''
-  let l:eslint = 'eslint'
-
-  if executable('npm')
-      let l:npm_bin = split(system('npm bin'), '\n')[0]
-  endif
-
-  if strlen(l:npm_bin) && executable(l:npm_bin . '/eslint')
-    let l:eslint = l:npm_bin . '/eslint'
-  endif
-
-  let b:syntastic_javascript_eslint_exec = l:eslint
-endfunction
-
-" use jshint or eslint for syntastic
-function! ChooseLinter()
-  if findfile('.jshintrc', '.;') != ''
-    let g:syntastic_javascript_checkers = ['jshint']
-  elseif findfile('.eslintrc', '.;') != '' || findfile('.eslintrc.json', '.;') != ''
-    let g:syntastic_javascript_checkers = ['eslint']
-  else
-    let g:syntastic_javascript_checkers = ['jshint']
-  endif
-  :call FindESLintBinary()
-endfunc
-
-autocmd FileType javascript :call ChooseLinter()
 
 " vim-javascript plugin
 let g:javascript_plugin_jsdoc = 1
@@ -227,7 +184,7 @@ let g:indent_guides_guides_size = 1
 " useful with the delitMate plugin
 imap <C-c> <CR><Esc>O
 
-" ident guides stuff
+" indent guides stuff
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=black
@@ -252,3 +209,16 @@ noremap! <C-Up> <Esc>:tabp<CR>
 " moving between changes
 noremap <C-j> g,
 noremap <C-k> g;
+
+"ale
+let g:ale_fixers = {
+\   'javascript': [
+\       'eslint',
+\   ],
+\}
+let g:ale_fix_on_save = 1
+
+"airline
+let g:airline_theme='distinguished'
+"let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+let g:airline_powerline_fonts = 1
