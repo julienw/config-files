@@ -17,6 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 " My Plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'rust-lang/rust.vim'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-repeat'
 Plugin 'Raimondi/delimitMate'
@@ -38,7 +39,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'elzr/vim-json'
 Plugin 'sjl/gundo.vim'
-Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'svermeulen/vim-easyclip'
@@ -215,6 +216,9 @@ let g:ale_fixers = {
 \   'javascript': [
 \       'eslint',
 \   ],
+\   'rust': [
+\       'rustfmt',
+\   ]
 \}
 let g:ale_fix_on_save = 1
 
