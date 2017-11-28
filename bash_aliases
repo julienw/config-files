@@ -31,7 +31,7 @@ alias ls='ls -F --color=auto'
 #[[ -s "/etc/profile.d/vte.sh" ]] && . "/etc/profile.d/vte.sh"
 
 function _git_prompt() {
-  local branch=`LC_ALL=C git symbolic-ref --short -q HEAD 2> /dev/null`
+  local branch=`LC_ALL=C git symbolic-ref --short -q HEAD 2>&1`
   if ! [[ "$branch" =~ Not\ a\ git\ repo ]]; then
     if [[ -z "$branch" ]]; then
       # This command doesn't give the most obvious name sometimes
