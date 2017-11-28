@@ -27,7 +27,8 @@
 	browser = firefox3
 	firefox-profile = default
 [core]
-	excludesfile = /home/julien/.gitignore
+  excludesfile = /home/julien/.gitignore
+  untrackedCache = 1
 [cinnabar]
 	helper = /home/julien/travail/git/git-cinnabar/git-cinnabar-helper
 [mozreview]

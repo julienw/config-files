@@ -31,23 +31,22 @@ alias ls='ls -F --color=auto'
 #[[ -s "/etc/profile.d/vte.sh" ]] && . "/etc/profile.d/vte.sh"
 
 function _git_prompt() {
-    local git_status="`LC_ALL=C git status -unormal 2>&1`"
-    if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-        if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+  local branch=`LC_ALL=C git symbolic-ref --short -q HEAD 2> /dev/null`
+  if ! [[ "$branch" =~ Not\ a\ git\ repo ]]; then
+    if [[ -z "$branch" ]]; then
+      # This command doesn't give the most obvious name sometimes
+      branch=`LC_ALL=C git describe --all --contains --abbrev=4 HEAD 2> /dev/null`
+    fi
+
+    local git_status="`LC_ALL=C git status --porcelain --ignore-submodules -unormal 2>&1`"
+    if [[ -z "$git_status" ]]; then
             local ansi=42
-        elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-            local ansi=43
-        else
+        elif [[ ! "$git_status" =~ ?? ]]; then
             local ansi=45
-        fi
-        if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
-            branch=${BASH_REMATCH[1]}
-            test "$branch" != master || branch=' '
         else
-            # Detached HEAD.  (branch=HEAD is a faster alternative.)
-            branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null ||
-                echo HEAD`)"
+            local ansi=43
         fi
+        test "$branch" != master || branch=' '
         echo -n '\[\e[0;37;'"$ansi"';1m\]'"$branch"'\[\e[0m\] '
     fi
 }
