@@ -3,7 +3,7 @@
 if [ -n "$1" ] ; then
   BRANCH_BASE="$1"
 else
-  BRANCH_BASE="master"
+  BRANCH_BASE="moz/master"
 fi
 
-git rebase -i `git merge-base moz/$BRANCH_BASE HEAD`
+git rebase -i `git merge-base $BRANCH_BASE HEAD`
