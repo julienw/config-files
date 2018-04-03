@@ -44,6 +44,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'svermeulen/vim-easyclip'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'bogado/file-line'
 "Plugin 'Rip-Rip/clang_complete'
 
 " All of your Plugins must be added before the following line
