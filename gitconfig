@@ -16,6 +16,8 @@
   diffc = diff --cached
   br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
   ca = commit --amend
+  ff = merge --ff-only
+  pushn = push --no-verify
 
 [remote-hg]
 	hg-git-compat = true
