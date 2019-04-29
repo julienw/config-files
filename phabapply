@@ -1,0 +1,3 @@
+#!/bin/sh
+
+for i in "$@" ; do curl -L https://phabricator.services.mozilla.com/$i?download | patch -p1 --merge ; done
