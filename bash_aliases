@@ -32,7 +32,7 @@ alias ls='ls -F --color=auto'
 
 function _git_prompt() {
   local branch=`LC_ALL=C git symbolic-ref --short -q HEAD 2>&1`
-  if ! [[ "$branch" =~ Not\ a\ git\ repo ]]; then
+  if ! [[ "$branch" =~ ot\ a\ git\ repo ]]; then
     if [[ -z "$branch" ]]; then
       # This command doesn't give the most obvious name sometimes
       branch=`LC_ALL=C git describe --all --contains --abbrev=4 HEAD 2> /dev/null`
