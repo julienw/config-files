@@ -215,11 +215,14 @@ noremap <C-k> g;
 "ale
 let g:ale_fixers = {
 \   'javascript': [
-\       'eslint',
+\       'eslint', 'prettier',
 \   ],
 \   'rust': [
 \       'rustfmt',
-\   ]
+\   ],
+\   'css': [
+\       'stylelint',
+\   ],
 \}
 let g:ale_fix_on_save = 1
 
@@ -227,3 +230,25 @@ let g:ale_fix_on_save = 1
 let g:airline_theme='distinguished'
 "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 let g:airline_powerline_fonts = 1
+
+"macros: execute macros on selected lines only
+"from https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
+"via https://medium.com/@schtoeffel/you-don-t-need-more-than-one-cursor-in-vim-2c44117d51db
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+"easyclip
+"Always move cursor at the end of paste
+let g:EasyClipAlwaysMoveCursorToEndOfPaste = 1
+"auto format when pasting
+let g:EasyClipAutoFormat = 1
+"do not change the cursor position when yanking
+let g:EasyClipPreserveCursorPositionAfterYank = 1
+"substitute commands
+let g:EasyClipUseSubstituteDefaults = 1
+"intuitive pasting in insert mode
+imap <c-v> <plug>EasyClipInsertModePaste
