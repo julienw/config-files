@@ -22,10 +22,10 @@ basepwd=`pwd`
 echo Found $basepwd
 
 if test -n "$1" ; then 
-  echo "Reseting and applying $1"
+  echo "Reseting and applying $1 on the branch 'review'"
   read -p "are you sure ?" enter
 
-  git reset --hard moz
+  git checkout -B review moz/master
 
   case "$1" in
     *github*)
@@ -33,6 +33,9 @@ if test -n "$1" ; then
       ;;
     *bugzilla*)
       wget -O - "$1" | git am -3
+      ;;
+    *phabricator*)
+      phabapply "$@"
       ;;
   esac
   if test $? -ne 0 ; then
