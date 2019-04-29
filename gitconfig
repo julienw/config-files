@@ -18,9 +18,12 @@
   ca = commit --amend --no-edit
   ff = merge --ff-only
   pushn = push --no-verify
-  fix = commit --fixup
+  fixup = commit --fixup
   squash = commit --squash
   recommit = commit -C @{1}
+  tip = show -s
+  now = !git commit --amend --date=\"$(date)\" --no-edit
+  rc = rebase --continue
 
 [interactive]
   singlekey = true
