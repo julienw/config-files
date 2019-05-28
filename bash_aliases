@@ -59,8 +59,9 @@ PROMPT_COMMAND=_prompt_command
 
 CDPATH=".:~/travail/git/"
 MOZPERF="/home/julien/travail/git/perf.html"
+MOZCENTRAL="/home/julien/travail/git/mozilla-central"
 alias go_perf="cd $MOZPERF"
-alias adbforward="adb forward tcp:6000 tcp:60000"
+alias go_central="cd $MOZCENTRAL"
 
 go() {
     if [ -z "$1" ] ; then
@@ -70,15 +71,13 @@ go() {
 
     eval go_$1
     if [ -n "$2" ] ; then
-      cd apps/$2 || cd $2 || true
+      cd src/$2 || cd devtools/$2 || cd $2 || true
     fi
 }
 
 find_git_commit() {
     git cherry $1 | awk '{ print $2 }' | xargs -n 1 git branch --contains | sort | uniq
 }
-
-alias hgup="hg qpop -a && hg pull -u && hg qpush -a"
 
 loc() {
   repwd="`pwd | sed 's/[]\\{}[\.$*+?^|()]/\\&/g'`"
@@ -93,3 +92,6 @@ export PERL5LIB="$HOME/perl5/lib/perl5/"
 
 export VISUAL=vim
 export EDITOR=$VISUAL
+# nice scrolling in Firefox
+export MOZ_USE_XINPUT2=1
+
