@@ -252,3 +252,6 @@ let g:EasyClipPreserveCursorPositionAfterYank = 1
 let g:EasyClipUseSubstituteDefaults = 1
 "intuitive pasting in insert mode
 imap <c-v> <plug>EasyClipInsertModePaste
+
+"open firefox for current file
+map <F8> :!xdg-open %<CR>
