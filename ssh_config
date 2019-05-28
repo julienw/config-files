@@ -23,3 +23,9 @@ Host cal
 Host petitevallee.everlong.org
   User admin
   IdentityFile ~/.ssh/petitevallee
+
+Host framagit.org
+  IdentityFile ~/.ssh/framagit
+
+Host github.com
+  IdentityFile ~/.ssh/github
