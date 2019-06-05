@@ -255,3 +255,7 @@ imap <c-v> <plug>EasyClipInsertModePaste
 
 "open firefox for current file
 map <F8> :!xdg-open %<CR>
+
+"this isn't very useful now and prone to security issues
+"see https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md
+set nomodeline
