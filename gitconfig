@@ -24,6 +24,7 @@
   tip = show -s
   now = !git commit --amend --date=\"$(date)\" --no-edit
   rc = rebase --continue
+  reword = commit --amend
 
 [interactive]
   singlekey = true
@@ -43,6 +44,8 @@
   excludesfile = /home/julien/.gitignore
   untrackedCache = 1
 [cinnabar]
-	helper = /home/julien/travail/git/git-cinnabar/git-cinnabar-helper
+	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
+	version-check = 1567115343
+	fsck = 1566397430
 [mozreview]
 	nickname = julienw
