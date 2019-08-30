@@ -85,7 +85,7 @@ loc() {
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
 
-PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/travail/git/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
+PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.mozbuild/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
@@ -94,4 +94,5 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 # nice scrolling in Firefox
 export MOZ_USE_XINPUT2=1
-
+# wayland support in Firefox
+export GDK_BACKEND=wayland
