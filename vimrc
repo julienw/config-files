@@ -126,6 +126,12 @@ noremap  <expr> <Home> (col('.') == matchend(getline('.'), '^\s*')+1 ? '0'  : '^
 imap <Home> <C-o><Home>
 "imap <End>  <C-o><End>
 
+"easier escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+vnoremap jk <Esc>
+vnoremap kj <Esc>
+
 " write with sudo
 command! W w !sudo tee % > /dev/null
 
@@ -215,7 +221,7 @@ noremap <C-k> g;
 "ale
 let g:ale_fixers = {
 \   'javascript': [
-\       'eslint', 'prettier',
+\       'eslint',
 \   ],
 \   'rust': [
 \       'rustfmt',
