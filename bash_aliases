@@ -60,8 +60,10 @@ PROMPT_COMMAND=_prompt_command
 CDPATH=".:~/travail/git/"
 MOZPERF="/home/julien/travail/git/perf.html"
 MOZCENTRAL="/home/julien/travail/git/mozilla-central"
+MOZPERFSERVER="/home/julien/travail/git/profiler-server"
 alias go_perf="cd $MOZPERF"
 alias go_central="cd $MOZCENTRAL"
+alias go_server="cd $MOZPERFSERVER"
 
 go() {
     if [ -z "$1" ] ; then
@@ -85,7 +87,7 @@ loc() {
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
 
-PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.mozbuild/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
+PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.local/bin:$HOME/.mozbuild/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
@@ -95,4 +97,4 @@ export EDITOR=$VISUAL
 # nice scrolling in Firefox
 export MOZ_USE_XINPUT2=1
 # wayland support in Firefox
-export GDK_BACKEND=wayland
+#export GDK_BACKEND=wayland
