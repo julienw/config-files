@@ -15,6 +15,7 @@
 [alias]
   diffc = diff --cached
   br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+  del-phab = !git branch -l D* --format='%(refname:short)' | xargs git branch -D
   ca = commit --amend --no-edit
   ff = merge --ff-only
   pushn = push --no-verify
@@ -43,9 +44,9 @@
 [core]
   excludesfile = /home/julien/.gitignore
   untrackedCache = 1
+  pager = less -S
 [cinnabar]
 	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1567115343
-	fsck = 1566397430
+	version-check = 1585134784
 [mozreview]
 	nickname = julienw
