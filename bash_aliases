@@ -51,11 +51,24 @@ function _git_prompt() {
     fi
 }
 
+function _virtualenv_prompt() {
+  if [ -n "$VIRTUAL_ENV" ] ; then
+    virtual_env_basename=`basename "$VIRTUAL_ENV"`
+    if [ "$virtual_env_basename" = venv ] ; then
+      virtual_env_basename=`basename "${VIRTUAL_ENV%/*}"`
+    fi
+    echo -n "(${virtual_env_basename}) "
+  fi
+}
+
 OLDPS1=$PS1
 function _prompt_command() {
-    PS1="`_git_prompt`$OLDPS1"
+    PS1="`_virtualenv_prompt``_git_prompt`$OLDPS1"
 }
 PROMPT_COMMAND=_prompt_command
+# Disabling the default pormpt handling of python virtualenv, because it doesn't
+# work with the git prompt. Instead we roll up our own.
+VIRTUAL_ENV_DISABLE_PROMPT=yes
 
 CDPATH=".:~/travail/git/"
 MOZPERF="/home/julien/travail/git/perf.html"
