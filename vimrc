@@ -49,6 +49,7 @@ Plugin 'svermeulen/vim-easyclip'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'bogado/file-line'
 "Plugin 'Rip-Rip/clang_complete'
+Plugin 'burner/vim-svelte'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -222,6 +223,7 @@ noremap <C-j> g,
 noremap <C-k> g;
 
 "ale
+let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_fixers = {
 \   'javascript': [
 \       'eslint',
@@ -231,6 +233,9 @@ let g:ale_fixers = {
 \   ],
 \   'css': [
 \       'stylelint',
+\   ],
+\   'svelte': [
+\       'eslint', 'prettier',
 \   ],
 \}
 let g:ale_fix_on_save = 1
