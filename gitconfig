@@ -3,6 +3,7 @@
 [user]
   name = Julien Wajsberg
   email = felash@gmail.com
+	signingkey = 0xBF7DCFA84F81D8C5
 
 #fetch = +refs/pull/*/head:refs/remotes/origin/pr/*"
 [rerere]
@@ -50,3 +51,5 @@
 	version-check = 1585134784
 [mozreview]
 	nickname = julienw
+[commit]
+	gpgsign = true
