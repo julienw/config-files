@@ -46,7 +46,7 @@ function _git_prompt() {
         else
             local ansi=43
         fi
-        test "$branch" != master || branch=' '
+        test "$branch" != master -a "$branch" != main || branch=' '
         echo -n '\[\e[0;37;'"$ansi"';1m\]'"$branch"'\[\e[0m\] '
     fi
 }
