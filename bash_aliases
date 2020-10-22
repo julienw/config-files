@@ -33,13 +33,16 @@ alias ls='ls -F --color=auto'
 function _git_prompt() {
   local branch=`LC_ALL=C git symbolic-ref --short -q HEAD 2>&1`
   if ! [[ "$branch" =~ ot\ a\ git\ repo ]]; then
-    if [[ -z "$branch" ]]; then
+    if [ -z "$branch" ]; then
       # This command doesn't give the most obvious name sometimes
       branch=`LC_ALL=C git describe --all --contains --abbrev=4 HEAD 2> /dev/null`
+      if [ $? -ne 0 ]; then
+        branch="DETACHED 🙃"
+      fi
     fi
 
     local git_status="`LC_ALL=C git status --porcelain --ignore-submodules -unormal 2>&1`"
-    if [[ -z "$git_status" ]]; then
+    if [ -z "$git_status" ]; then
             local ansi=42
         elif [[ ! "$git_status" =~ ?? ]]; then
             local ansi=45
