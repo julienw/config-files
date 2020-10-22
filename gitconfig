@@ -48,8 +48,10 @@
   pager = less -S
 [cinnabar]
 	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1599031807
+	version-check = 1602599279
 [mozreview]
 	nickname = julienw
 [commit]
-	gpgsign = true
+  gpgsign = true
+[absorb]
+  maxStack=50
