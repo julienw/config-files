@@ -41,6 +41,10 @@ function _git_prompt() {
       fi
     fi
 
+    if [ -d "$(git rev-parse --git-path rebase-merge)" ]; then
+      branch="$branch (rebase)"
+    fi
+
     local git_status="`LC_ALL=C git status --porcelain --ignore-submodules -unormal 2>&1`"
     if [ -z "$git_status" ]; then
             local ansi=42
