@@ -193,8 +193,15 @@ let g:javascript_plugin_flow = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guides_size = 1
 
-" useful with the delitMate plugin
-imap <C-c> <CR><Esc>O
+" useful with the delimitMate plugin
+" disabled right now, because I'm trying the expansions instead
+"imap <C-c> <CR><Esc>O
+" delimitMate enable all the things
+let delimitMate_expand_cr = 1
+let delimitMate_expand_inside_quotes = 1
+let delimitMate_jump_expansion = 1
+let delimitMate_balance_matchpairs = 1
+let delimitMate_excluded_ft = "mail,txt"
 
 " indent guides stuff
 let g:indent_guides_auto_colors = 0
@@ -273,3 +280,6 @@ map <F8> :!xdg-open %<CR>
 "this isn't very useful now and prone to security issues
 "see https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md
 set nomodeline
+
+"opt-in to the new version of snipmate's snippet parser
+let g:snipMate = { 'snippet_version' : 1 }

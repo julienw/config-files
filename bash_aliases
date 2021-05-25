@@ -80,10 +80,12 @@ VIRTUAL_ENV_DISABLE_PROMPT=yes
 CDPATH=".:~/travail/git/"
 MOZPERF="/home/julien/travail/git/perf.html"
 MOZCENTRAL="/home/julien/travail/git/mozilla-central"
+MOZCENTRALARTIFACT="/home/julien/travail/git/mozilla-central-artifacts"
 MOZPERFSERVER="/home/julien/travail/git/profiler-server"
 alias go_perf="cd $MOZPERF"
 alias go_central="cd $MOZCENTRAL"
 alias go_server="cd $MOZPERFSERVER"
+alias go_artifacts="cd $MOZCENTRALARTIFACT"
 
 go() {
     if [ -z "$1" ] ; then

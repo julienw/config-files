@@ -6,5 +6,5 @@ else
   BRANCH_BASE="master"
 fi
 
-#git rebase -i `git merge-base $BRANCH_BASE HEAD`
-git rebase -i --onto $BRANCH_BASE...
+git rebase -i `git merge-base $BRANCH_BASE HEAD`
+#git rebase -i --onto $BRANCH_BASE...
