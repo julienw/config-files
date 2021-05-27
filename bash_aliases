@@ -120,3 +120,5 @@ export EDITOR=$VISUAL
 export MOZ_USE_XINPUT2=1
 # wayland support in Firefox
 #export GDK_BACKEND=wayland
+
+export WEB_EXT_FIREFOX=~/firefox-nightly/firefox
