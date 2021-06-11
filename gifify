@@ -2,8 +2,8 @@
 
 inputFile="$1"
 
-FPS=15
-WIDTH=1348
+FPS=${FPS:-15}
+WIDTH="min(${WIDTH:-1348}\,iw)"
 tmpfile=`mktemp gifify-XXXXXXXX.png`
 
 #Generate palette for better quality
