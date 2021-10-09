@@ -109,7 +109,7 @@ loc() {
   #locate "$@" | grep -E --color=never ^"$repwd" | grep -F "$@"
 }
 
-PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.local/bin:$HOME/.mozbuild/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
+PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.5.0/bin:$HOME/.local/bin:$HOME/.mozbuild/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"

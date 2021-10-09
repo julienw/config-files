@@ -27,6 +27,7 @@
   now = !git commit --amend --date=\"$(date)\" --no-edit
   rc = rebase --continue
   reword = commit --amend
+  list-files = diff-tree --no-commit-id --name-only -r HEAD
 
 [interactive]
   singlekey = true
@@ -48,10 +49,14 @@
   pager = less -S
 [cinnabar]
 	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1621515600
+	version-check = 1627651572
 [mozreview]
 	nickname = julienw
 [commit]
   gpgsign = true
 [absorb]
   maxStack=50
+[pull]
+	ff = only
+[merge]
+	renamelimit = 2320
