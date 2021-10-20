@@ -22,6 +22,9 @@ shopt -s cmdhist
 shopt -s histverify
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
+# disable ctrl-s in terminal (that stops the terminal's output) to make it
+# possible to use in bash
+stty -ixon
 
 alias j='jobs -l'
 alias po=popd
