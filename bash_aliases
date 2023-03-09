@@ -90,7 +90,7 @@ alias go_central="cd $MOZCENTRAL"
 alias go_server="cd $MOZPERFSERVER"
 alias go_artifacts="cd $MOZCENTRALARTIFACT"
 
-go() {
+goo() {
     if [ -z "$1" ] ; then
       go_perf
       return
@@ -122,6 +122,6 @@ export EDITOR=$VISUAL
 # nice scrolling in Firefox
 export MOZ_USE_XINPUT2=1
 # wayland support in Firefox
-#export GDK_BACKEND=wayland
+export MOZ_ENABLE_WAYLAND=1
 
 export WEB_EXT_FIREFOX=~/firefox-nightly/firefox

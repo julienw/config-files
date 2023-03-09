@@ -11,7 +11,11 @@
   enabled = 1
 
 [diff]
-  context = 8
+	context = 8
+  colorMoved = default
+  tool=nvimdiff
+	interHunkContext = 16
+	colorMovedWS = allow-indentation-change
 
 [alias]
   diffc = diff --cached
@@ -38,6 +42,7 @@
   default = simple
 [rebase]
   autoSquash = true
+  forkPoint = true
 [help]
   autocorrect = 1
 [bz]
@@ -49,16 +54,25 @@
   pager = less -S
 [cinnabar]
 	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1627651572
+	version-check = 1678295273
 [mozreview]
 	nickname = julienw
-[commit]
-  gpgsign = true
 [absorb]
   maxStack=50
 [pull]
 	ff = only
 [merge]
-	renamelimit = 2320
+  renamelimit = 2320
+# set "nvim" as tool for merging
+  tool = nvim
+[mergetool]
+# automatically launch merge tool without displaying a prompt
+  prompt = false
+[mergetool "nvim"]
+# define command which will be used when "nvim" is set as a merge tool
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [init]
 	defaultBranch = main
+[branch]
+  autoSetupRebase = always
+  autoSetupMerge = inherit

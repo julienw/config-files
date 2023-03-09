@@ -6,10 +6,14 @@ FPS=${FPS:-15}
 WIDTH="min(${WIDTH:-1348}\,iw)"
 tmpfile=`mktemp gifify-XXXXXXXX.png`
 
+if [ -n "$DURATION" ] ; then
+  INPUT_ARGS="-t $DURATION"
+fi
+
 #Generate palette for better quality
-ffmpeg -i "$inputFile" -vf fps=$FPS,scale=$WIDTH:-1:flags=lanczos,palettegen -y "$tmpfile"
+ffmpeg $INPUT_ARGS -i "$inputFile" -vf fps=$FPS,scale=$WIDTH:-1:flags=lanczos,palettegen -y "$tmpfile"
 
 #Generate gif using palette
-ffmpeg -i "$inputFile" -i "$tmpfile" -loop 0 -filter_complex "fps=$FPS,scale=$WIDTH:-1:flags=lanczos[x];[x][1:v]paletteuse" "$inputFile.gif"
+ffmpeg $INPUT_ARGS -i "$inputFile" -i "$tmpfile" -loop 0 -filter_complex "fps=$FPS,scale=$WIDTH:-1:flags=lanczos[x];[x][1:v]paletteuse" "$inputFile.gif"
 
 rm "$tmpfile"
