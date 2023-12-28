@@ -162,12 +162,18 @@ let g:ale_linters = {
 \}
 let g:ale_fixers = {
 \   'javascript': [
-\       'eslint', 'prettier',
+\       'prettier', 'eslint',
 \   ],
 \   'javascriptreact': [
-  \       'eslint', 'prettier',
-  \   ],
-\   'typescript': ['prettier'],
+\       'prettier', 'eslint',
+\   ],
+\   'typescriptreact': [
+\       'prettier', 'eslint',
+\   ],
+\   'html': [
+\       'prettier',
+\   ],
+\   'typescript': ['prettier', 'eslint'],
 \   'rust': [
 \       'rustfmt',
 \   ],
@@ -301,3 +307,12 @@ nnoremap <Leader>co :copen<CR>
 nnoremap <Leader>cc :cclose<CR>
 " open in a new tab
 set switchbuf+=usetab,newtab
+
+"--- Open Explorer -- The first line was copied, but not sure everything is
+"needed so let's see.
+"nnoremap <silent><leader>e :Exp<CR><CR>
+nnoremap <leader>e :Exp<CR>
+
+" wildmenu option
+" never complete to the full match, but display the menu
+set wildmode=longest:full,full

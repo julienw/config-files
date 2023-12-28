@@ -85,10 +85,12 @@ MOZPERF="/home/julien/travail/git/perf.html"
 MOZCENTRAL="/home/julien/travail/git/mozilla-central"
 MOZCENTRALARTIFACT="/home/julien/travail/git/mozilla-central-artifacts"
 MOZPERFSERVER="/home/julien/travail/git/profiler-server"
+SPEEDOMETER="/home/julien/travail/git/Speedometer"
 alias go_perf="cd $MOZPERF"
 alias go_central="cd $MOZCENTRAL"
 alias go_server="cd $MOZPERFSERVER"
 alias go_artifacts="cd $MOZCENTRALARTIFACT"
+alias go_speed="cd $SPEEDOMETER"
 
 goo() {
     if [ -z "$1" ] ; then
@@ -125,3 +127,5 @@ export MOZ_USE_XINPUT2=1
 export MOZ_ENABLE_WAYLAND=1
 
 export WEB_EXT_FIREFOX=~/firefox-nightly/firefox
+
+eval "$(zoxide init bash)"

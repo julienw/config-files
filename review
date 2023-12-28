@@ -29,7 +29,7 @@ if test -n "$1" ; then
 
   case "$1" in
     *github*)
-      hub am -3 "$1"
+      gh pr checkout "$1"
       ;;
     *bugzilla*)
       wget -O - "$1" | git am -3
