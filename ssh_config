@@ -22,6 +22,7 @@ Host cal
 
 Host petitevallee.everlong.org
   User admin
+  ForwardAgent yes
   IdentityFile ~/.ssh/petitevallee
 
 Host framagit.org
