@@ -16,6 +16,7 @@
   tool=nvimdiff
 	interHunkContext = 16
 	colorMovedWS = allow-indentation-change
+	algorithm = histogram
 
 [alias]
   diffc = diff --cached
@@ -44,6 +45,7 @@
 [rebase]
   autoSquash = true
   forkPoint = true
+	updateRefs = true
 [help]
   autocorrect = 1
 [bz]
@@ -55,7 +57,7 @@
 #  pager = delta
 [cinnabar]
 	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1703169508
+	version-check = 1711376779
 [mozreview]
 	nickname = julienw
 [absorb]
@@ -66,7 +68,7 @@
   renamelimit = 2320
 # set "nvim" as tool for merging
   tool = nvim
-  conflictstyle=diff3
+  conflictstyle=zdiff3
 [mergetool]
 # automatically launch merge tool without displaying a prompt
   prompt = false
@@ -84,3 +86,5 @@
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
   minus-non-emph-style = syntax normal
   plus-non-emph-style = syntax normal
+[url "git@github.com:"]
+  pushInsteadOf = "https://github.com/"

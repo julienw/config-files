@@ -1,0 +1,24 @@
+#!/bin/sh
+
+print_help() {
+  echo "This launches the interactive rebase editor. Replace 'pick' by 'reword'"
+  echo "for the commits you want to prefix with [Do not commit, this is #XXX]".
+  echo
+  echo "$0 <rebase_base> <PR_number>"
+}
+
+if [ $# -lt 2 ] ; then
+  echo "Error: not enough parameters"
+  echo
+  print_help
+  exit 1
+fi
+
+echo export GIT_SEQUENCE_EDITOR=vim
+export GIT_SEQUENCE_EDITOR=vim
+
+echo "export GIT_EDITOR=\"sed -i '1s/^/[Do not commit, this is #$2] /'\""
+export GIT_EDITOR="sed -i '1s/^/[Do not commit, this is #$2] /'"
+
+echo "git rebase -i \"$1\""
+git rebase -i "$1"

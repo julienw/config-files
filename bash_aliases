@@ -51,7 +51,7 @@ function _git_prompt() {
     local git_status="`LC_ALL=C git status --porcelain --ignore-submodules -unormal 2>&1`"
     if [ -z "$git_status" ]; then
             local ansi=42
-        elif [[ ! "$git_status" =~ ?? ]]; then
+        elif [[ ! "$git_status" =~ "??" ]]; then
             local ansi=45
         else
             local ansi=43
