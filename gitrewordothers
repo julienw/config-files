@@ -2,7 +2,7 @@
 
 print_help() {
   echo "This launches the interactive rebase editor. Replace 'pick' by 'reword'"
-  echo "for the commits you want to prefix with [Do not commit, this is #XXX]".
+  echo "for the commits you want to prefix with [Do not review, this is #XXX]".
   echo
   echo "$0 <rebase_base> <PR_number>"
 }
@@ -17,8 +17,8 @@ fi
 echo export GIT_SEQUENCE_EDITOR=vim
 export GIT_SEQUENCE_EDITOR=vim
 
-echo "export GIT_EDITOR=\"sed -i '1s/^/[Do not commit, this is #$2] /'\""
-export GIT_EDITOR="sed -i '1s/^/[Do not commit, this is #$2] /'"
+echo "export GIT_EDITOR=\"sed -i '1s/^/[Do not review, this is #$2] /'\""
+export GIT_EDITOR="sed -i '1s/^/[Do not review, this is #$2] /'"
 
 echo "git rebase -i \"$1\""
 git rebase -i "$1"

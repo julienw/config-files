@@ -57,7 +57,7 @@
 #  pager = delta
 [cinnabar]
 	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1711376779
+	version-check = 1711617469
 [mozreview]
 	nickname = julienw
 [absorb]
