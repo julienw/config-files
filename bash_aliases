@@ -115,6 +115,26 @@ loc() {
 }
 
 PATH="$PATH:$HOME/node_modules/.bin:$HOME/.gem/ruby/2.5.0/bin:$HOME/.local/bin:$HOME/.mozbuild/git-cinnabar:$HOME/.mozbuild/version-control-tools/git/commands"
+
+source "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/home/julien/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
 export FIREFOX=~/firefox-nightly/firefox
 export FIREFOX_NIGHTLY_BIN=$FIREFOX
 export PERL5LIB="$HOME/perl5/lib/perl5/"
@@ -129,3 +149,4 @@ export MOZ_ENABLE_WAYLAND=1
 export WEB_EXT_FIREFOX=~/firefox-nightly/firefox
 
 eval "$(zoxide init bash)"
+source <(COMPLETE=bash jj)

@@ -1,0 +1,80 @@
+version 1
+
+snippet litstyles
+		static styles = [css\`${0}\`];
+
+snippet lit
+	import { LitElement, html, css } from 'lit';
+	import { customElement, property, state } from 'lit/decorators.js';
+	
+	@customElement("`Filename()`")
+	export class `substitute(Filename(), '\\v(\\w+)-?', '\\u\\1', 'g')` extends LitElement {
+		render() {
+			return html`${0}`;
+		}
+	
+		static styles = [
+			css\`
+				:host {
+					display: block;
+				}
+			\`
+		];
+	}
+
+	declare global {
+		interface HTMLElementTagNameMap {
+			"`Filename()`": `substitute(Filename(), '\\v(\\w+)-?', '\\u\\1', 'g')`;
+		}
+	}
+
+snippet mozlit
+	import { html, css } from 'lit';
+	import { customElement, property, state } from 'lit/decorators.js';
+	import { MozLitElement } from 'lit-utils';
+
+	@customElement("`Filename()`")
+	export class `substitute(Filename(), '\\v(\\w+)-?', '\\u\\1', 'g')` extends MozLitElement {
+		render() {
+			return html\`${0}\`;
+		}
+
+		static styles = [
+			MozLitElement.styles,
+			css\`
+				:host {
+					display: block;
+				}
+			\`
+		];
+	}
+
+	declare global {
+		interface HTMLElementTagNameMap {
+			"`Filename()`": `substitute(Filename(), '\\v(\\w+)-?', '\\u\\1', 'g')`;
+		}
+	}
+
+snippet litifdef
+	import { ifDefined } from "lit/directives/if-defined.js";
+
+snippet litwhen
+	import { when } from "lit/directives/when.js";
+
+snippet litstylemap
+	import { styleMap } from "lit/directives/style-map.js";
+
+snippet litclassmap
+	import { classMap } from "lit/directives/class-map.js";
+
+snippet litrepeat
+	import { repeat } from "lit/directives/repeat.js";
+
+snippet litmap
+	import { map } from "lit/directives/map.js";
+
+snippet litrepeat
+	import { repeat } from "lit/directives/repeat.js";
+
+snippet litl10nargs
+	data-l10n-args=\$\{JSON.stringify({ $0 })\}

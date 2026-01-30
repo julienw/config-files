@@ -1,9 +1,17 @@
 [color]
   ui = auto
+[color "diff"]
+#  new = "bold cyan"
+#  old = "bold red"
+#  new = "46"
+#  old = "196"
+#  new = "bold #00ffff #303030"
+#  old = "bold #ffa077 #303030"
+
 [user]
   name = Julien Wajsberg
   email = felash@gmail.com
-	signingkey = 0xBF7DCFA84F81D8C5
+	signingkey = /home/julien/.ssh/yubi.pub
 
 #fetch = +refs/pull/*/head:refs/remotes/origin/pr/*"
 [rerere]
@@ -47,7 +55,7 @@
   forkPoint = true
 	updateRefs = true
 [help]
-  autocorrect = 1
+	autocorrect = 1
 [bz]
 	browser = firefox3
 	firefox-profile = default
@@ -57,7 +65,7 @@
 #  pager = delta
 [cinnabar]
 	helper = /home/julien/.mozbuild/git-cinnabar/git-cinnabar-helper
-	version-check = 1711617469
+	version-check = 1747925900
 [mozreview]
 	nickname = julienw
 [absorb]
@@ -88,3 +96,7 @@
   plus-non-emph-style = syntax normal
 [url "git@github.com:"]
   pushInsteadOf = "https://github.com/"
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/julien/.ssh/allowedSignersFile

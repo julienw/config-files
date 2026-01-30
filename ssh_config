@@ -1,32 +1,14 @@
 Host *
    ControlMaster auto
    ControlPath ~/.ssh/master-%r@%h:%p
+   IdentityFile ~/.ssh/yubi
 
 Host hg.mozilla.org
   User jwajsberg@mozilla.com
-  IdentityFile ~/.ssh/mozilla
-
-Host reviewboard-hg.mozilla.org
-  User jwajsberg@mozilla.com
-  IdentityFile ~/.ssh/mozilla
-
-Host people
-  User jwajsberg
-  IdentityFile ~/.ssh/mozilla
-  Hostname people-mozilla.org
-
-Host cal
-  User ubuntu
-  Hostname calendar.knilxof.org
-  IdentityFile ~/.ssh/aws
 
 Host petitevallee.everlong.org
   User admin
   ForwardAgent yes
-  IdentityFile ~/.ssh/petitevallee
-
-Host framagit.org
-  IdentityFile ~/.ssh/framagit
 
 Host github.com
-  IdentityFile ~/.ssh/github
+  ControlPersist 3600

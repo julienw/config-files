@@ -44,7 +44,8 @@ Plug 'bogado/file-line'
 
 " Fuzzy finder
 Plug 'wincent/command-t', {
-    \   'do': 'cd ruby/command-t/ext/command-t && { make clean; ruby extconf.rb && make }'
+    \   'branch': '7-x-release',
+    \   'do': 'cd ruby/command-t/ext/command-t && ( make clean; ruby extconf.rb && make )'
     \ }
 
 " Search in all files with :Ack :Lack :Back
@@ -68,6 +69,8 @@ Plug 'elzr/vim-json'
 " syntax highlighting
 "svelte
 Plug 'evanleck/vim-svelte'
+"lit
+Plug 'jonsmithers/vim-html-template-literals'
 "javascript
 Plug 'pangloss/vim-javascript'
 "another option for JS
@@ -76,6 +79,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
 "jsx
 Plug 'maxmellon/vim-jsx-pretty'
+
+"kotlin
+Plug 'udalov/kotlin-vim'
 
 " LSP capabilities
 "Plug 'prabirshrestha/async.vim'
@@ -159,7 +165,11 @@ let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
 \   'typescript': ['eslint', 'tsserver'],
+\   'javascriptreact': ['eslint', 'flow'],
+\   'typescriptreact': ['eslint', 'tsserver'],
+\   'rust': ['analyzer', 'cargo'],
 \}
+let g:ale_linters_explicit = 1
 let g:ale_fixers = {
 \   'javascript': [
 \       'prettier', 'eslint',
@@ -185,12 +195,16 @@ let g:ale_fixers = {
 \   ],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_rust_rustfmt_options = '--edition 2024'
 
 " use the quickfix rather than the loclist
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
 " -------
+
+" html and css tagged templates configuration
+let g:htl_css_templates = 1
 
 " security issue
 set nomodeline
