@@ -11,4 +11,4 @@ Host petitevallee.everlong.org
   ForwardAgent yes
 
 Host github.com
-  ControlPersist 3600
+  #  ControlPersist 3600

@@ -117,6 +117,10 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
+" --- configuration for azerty
+" go to definition
+nmap <C-D> <C-]>
+
 " --- configuration for vim-cutlass ---
 " m is for "move" => delete and move
 nnoremap m d
@@ -168,6 +172,7 @@ let g:ale_linters = {
 \   'javascriptreact': ['eslint', 'flow'],
 \   'typescriptreact': ['eslint', 'tsserver'],
 \   'rust': ['analyzer', 'cargo'],
+\   'css': ['eslint'],
 \}
 let g:ale_linters_explicit = 1
 let g:ale_fixers = {
@@ -188,7 +193,7 @@ let g:ale_fixers = {
 \       'rustfmt',
 \   ],
 \   'css': [
-\       'stylelint',
+\       'prettier', 'stylelint', 'eslint',
 \   ],
 \   'svelte': [
 \       'eslint', 'prettier',
