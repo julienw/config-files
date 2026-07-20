@@ -4,4 +4,5 @@
 *.orig
 
 .claude
+.codex
 CLAUDE.local.md
