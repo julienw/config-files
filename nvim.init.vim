@@ -244,7 +244,10 @@ set tabstop=2
 set updatetime=750
 
 " toggle between paste mode and nopaste mode
-set pastetoggle=<F12>
+" removed in nvim 0.9
+if !has('nvim-0.9')
+  set pastetoggle=<F12>
+endif
 
 " set xterm title
 set title
